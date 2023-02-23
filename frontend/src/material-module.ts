@@ -16,7 +16,10 @@ import { MatCheckboxModule} from '@angular/material/checkbox'
 import { MatTableModule} from '@angular/material/table'
 import { MatPaginatorModule} from '@angular/material/paginator'
 import { MatSortModule} from '@angular/material/sort'
-
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatRadioModule } from '@angular/material/radio'
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 @NgModule({
   exports: [
     MatInputModule,
@@ -32,7 +35,11 @@ import { MatSortModule} from '@angular/material/sort'
     MatCheckboxModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
+    MatRadioModule,
+    
+
 
 
 

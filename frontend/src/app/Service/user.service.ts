@@ -34,4 +34,16 @@ export class UserService {
   getUserByID(inputdata:any): Observable<UserModel>{
     return this.http.get<UserModel>(`${this.authApiURL}/getUser/${inputdata}`)
   }
+
+  getPrivelegeLevel(){
+
+  }
+
+  getID(){
+    const token = this.getToken();
+    const parts = token!.split('.');
+    const payload = JSON.parse(atob(parts[1]));
+    const userID = parseInt(payload.id);
+    return userID;
+  }
 }

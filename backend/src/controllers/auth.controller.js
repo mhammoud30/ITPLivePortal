@@ -44,9 +44,9 @@ exports.signin = (req, res) => {
             });
             return;
         }
-        if (data) {
+        if (data) { 
             if (comparePassword(password.trim(), data.password)) {
-                const token = generateToken(data.id);
+                const token = generateToken(data.id, data.privilegeLevel);
                 res.status(200).send({
                     status: 'success',
                     data: {
@@ -98,13 +98,14 @@ exports.getUser = (req, res) => {
                         role: data.role,
                         privilegeLevel: data.privilegeLevel,
                 });
-                return;
-            
-            res.status(401).send({
-                status: 'error',
-                message: 'not found'
-            });
+                return;   
         }
+        res.status(401).send({
+            status: 'error',
+            message: 'not found'
+        });
     });
 
 }
+
+

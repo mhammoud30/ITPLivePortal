@@ -68,7 +68,6 @@ class User {
             cb({kind: "not_found"}, null);
         })
     }
-
 }
 
 module.exports = User; 

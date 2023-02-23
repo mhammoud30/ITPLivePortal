@@ -18,6 +18,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { InfluencersComponent } from './talent/influencers/influencers.component';
 import { NewInfluencerComponent } from './talent/new-influencer/new-influencer.component';
+import { ModalpopupComponent } from './talent/modalpopup/modalpopup.component';
+
+import { NewPackageLogComponent } from './talent/new-package-log/new-package-log.component';
+import { InfluencerProfileComponent } from './talent/influencer-profile/influencer-profile.component';
+import { NewCelebrityComponent } from './talent/new-celebrity/new-celebrity.component';
+import { CelebritiesComponent } from './talent/celebrities/celebrities.component';
+import { CelebrityProfileComponent } from './talent/celebrity-profile/celebrity-profile.component';
+import { ModalpopupCelebrityComponent } from './talent/modalpopup-celebrity/modalpopup-celebrity.component';
 
 
 
@@ -32,6 +40,13 @@ import { NewInfluencerComponent } from './talent/new-influencer/new-influencer.c
     LoginComponent,
     InfluencersComponent,
     NewInfluencerComponent,
+    ModalpopupComponent,
+    NewPackageLogComponent,
+    InfluencerProfileComponent,
+    NewCelebrityComponent,
+    CelebritiesComponent,
+    CelebrityProfileComponent,
+    ModalpopupCelebrityComponent,
   ],
   imports: [
     BrowserModule,

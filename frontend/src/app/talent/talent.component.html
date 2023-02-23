@@ -3,13 +3,20 @@
 
 
 
-<button mat-raised-button (click)="redirectToUrl()">Influencers</button>
-<button mat-raised-button >Celebrities</button>
-<button mat-raised-button> Rate Logs</button>
+<button mat-raised-button (click)="redirectToInfluencers()">Influencers</button>
+<button mat-raised-button (click)="redirectToNewInfluencer()"> New Influencer</button>
 
-<button mat-raised-button (click)="redirectToUrl1()"> New Influencer</button>
-<button mat-raised-button> New Celebrity</button>
-<button mat-raised-button> New Rate Log</button>
+<button mat-raised-button *ngIf="pl>7" (click)="redirectToCelebrities()">Celebrities</button>
+<button mat-raised-button *ngIf="pl>7"(click)="redirectToNewCelebrity()"> New Celebrity</button>
+
+
+<button mat-raised-button> Rate Logs</button>
+<button mat-raised-button (click)="redirectToNewLog()"> New Rate Log</button>
+
+<button mat-raised-button> Time Form </button>
+
+
+
 
 </div>
 </div>

@@ -6,7 +6,7 @@
 </div>
 
 <div class="form-container">
-  <form [formGroup]="newInfluencerFrom" (ngSubmit)="onSubmit()" autocomplete="off">
+  <form [formGroup]="newInfluencerForm" (ngSubmit)="onSubmit()" autocomplete="off">
     <h2>General Information</h2>
 
     <div class="row">
@@ -14,8 +14,8 @@
       <mat-label>Name</mat-label>
       <input matInput type="text" formControlName="Name" autocomplete="off" required />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Name'].invalid &&
-          newInfluencerFrom.controls['Name'].touched
+          newInfluencerForm.controls['Name'].invalid &&
+          newInfluencerForm.controls['Name'].touched
         ">
         Please enter a name.
       </mat-error>
@@ -27,8 +27,8 @@
         <mat-option *ngFor="let option of genders" [value]="option">{{option}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Gender'].invalid &&
-          newInfluencerFrom.controls['Gender'].touched
+          newInfluencerForm.controls['Gender'].invalid &&
+          newInfluencerForm.controls['Gender'].touched
         ">
         Please enter a gender.
       </mat-error>
@@ -38,8 +38,8 @@
       <mat-label>Phone Number</mat-label>
       <input matInput type="number" formControlName="Number" autocomplete="off" />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Number'].invalid &&
-          newInfluencerFrom.controls['Number'].touched
+          newInfluencerForm.controls['Number'].invalid &&
+          newInfluencerForm.controls['Number'].touched
         ">
         Please enter a number.
       </mat-error>
@@ -50,8 +50,8 @@
       <mat-label>Email Address</mat-label>
       <input matInput type="email" formControlName="Email" autocomplete="off" required />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Email'].invalid &&
-          newInfluencerFrom.controls['Email'].touched
+          newInfluencerForm.controls['Email'].invalid &&
+          newInfluencerForm.controls['Email'].touched
         ">
         Please enter a valid email address.
       </mat-error>
@@ -67,8 +67,8 @@
 
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['MainContentLanguage'].invalid &&
-          newInfluencerFrom.controls['MainContentLanguage'].touched
+          newInfluencerForm.controls['MainContentLanguage'].invalid &&
+          newInfluencerForm.controls['MainContentLanguage'].touched
         ">
         Please select a language.
       </mat-error>
@@ -80,8 +80,8 @@
         <mat-option *ngFor="let language of languages" [value]="language">{{language}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['SubContentLang'].invalid &&
-          newInfluencerFrom.controls['SubContentLang'].touched
+          newInfluencerForm.controls['SubContentLang'].invalid &&
+          newInfluencerForm.controls['SubContentLang'].touched
         ">
         Please select a language.
       </mat-error>
@@ -93,8 +93,8 @@
         <mat-option *ngFor="let vertical of verticals" [value]="vertical">{{vertical}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['MainVertical'].invalid &&
-          newInfluencerFrom.controls['MainVertical'].touched
+          newInfluencerForm.controls['MainVertical'].invalid &&
+          newInfluencerForm.controls['MainVertical'].touched
         ">
         Please select a vertical.
       </mat-error>
@@ -106,8 +106,8 @@
         <mat-option *ngFor="let vertical of verticals" [value]="vertical">{{vertical}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['SubVertical'].invalid &&
-          newInfluencerFrom.controls['SubVertical'].touched
+          newInfluencerForm.controls['SubVertical'].invalid &&
+          newInfluencerForm.controls['SubVertical'].touched
         ">
         Please select a vertical.
       </mat-error>
@@ -119,8 +119,8 @@
       <mat-label>Occupation</mat-label>
       <input matInput type="text" formControlName="Occupation" autocomplete="off" />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Occupation'].invalid &&
-          newInfluencerFrom.controls['Occupation'].touched
+          newInfluencerForm.controls['Occupation'].invalid &&
+          newInfluencerForm.controls['Occupation'].touched
         ">
         Please enter an Occupation.
       </mat-error>
@@ -130,8 +130,8 @@
       <mat-label>ITP Relationship</mat-label>
       <input matInput type="text" formControlName="ItpRelationship" autocomplete="off" />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['ItpRelationship'].invalid &&
-          newInfluencerFrom.controls['ItpRelationship'].touched
+          newInfluencerForm.controls['ItpRelationship'].invalid &&
+          newInfluencerForm.controls['ItpRelationship'].touched
         ">
         Please enter the Relationship.
       </mat-error>
@@ -140,11 +140,11 @@
     <mat-form-field appearance="outline">
       <mat-label>Nationality</mat-label>
       <mat-select formControlName="Nationality">
-        <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+        <mat-option *ngFor="let country of nationalities" [value]="country">{{country}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Nationality'].invalid &&
-          newInfluencerFrom.controls['Nationality'].touched
+          newInfluencerForm.controls['Nationality'].invalid &&
+          newInfluencerForm.controls['Nationality'].touched
         ">
         Please select a Nationality.
       </mat-error>
@@ -153,11 +153,11 @@
     <mat-form-field appearance="outline">
       <mat-label>Second Nationality</mat-label>
       <mat-select formControlName="SecondNationality">
-        <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+        <mat-option *ngFor="let country of nationalities" [value]="country">{{country}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['SecondNationality'].invalid &&
-          newInfluencerFrom.controls['SecondNationality'].touched
+          newInfluencerForm.controls['SecondNationality'].invalid &&
+          newInfluencerForm.controls['SecondNationality'].touched
         ">
         Please select a Nationality.
       </mat-error>
@@ -170,8 +170,8 @@
         <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['CountryLocation'].invalid &&
-          newInfluencerFrom.controls['CountryLocation'].touched
+          newInfluencerForm.controls['CountryLocation'].invalid &&
+          newInfluencerForm.controls['CountryLocation'].touched
         ">
         Please select a Country.
       </mat-error>
@@ -181,8 +181,8 @@
       <mat-label>City</mat-label>
       <input matInput type="text" formControlName="CityLocation" autocomplete="off" />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['CityLocation'].invalid &&
-          newInfluencerFrom.controls['CityLocation'].touched
+          newInfluencerForm.controls['CityLocation'].invalid &&
+          newInfluencerForm.controls['CityLocation'].touched
         ">
         Please enter a city.
       </mat-error>
@@ -192,8 +192,8 @@
       <mat-label>Address</mat-label>
       <input matInput type="text" formControlName="Address" autocomplete="off" />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Address'].invalid &&
-          newInfluencerFrom.controls['Address'].touched
+          newInfluencerForm.controls['Address'].invalid &&
+          newInfluencerForm.controls['Address'].touched
         ">
         Please enter a Address.
       </mat-error>
@@ -208,8 +208,8 @@
       <mat-label>Instagram Handle</mat-label>
       <input matInput type="text" formControlName="InstagramHandle" autocomplete="off" required />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['InstagramHandle'].invalid &&
-          newInfluencerFrom.controls['InstagramHandle'].touched
+          newInfluencerForm.controls['InstagramHandle'].invalid &&
+          newInfluencerForm.controls['InstagramHandle'].touched
         ">
         Please enter Instagram Handle.
       </mat-error>
@@ -219,8 +219,8 @@
       <mat-label>Instagram Followers</mat-label>
       <input matInput type="number" formControlName="InstagramFollowers" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['InstagramFollowers'].invalid &&
-          newInfluencerFrom.controls['InstagramFollowers'].touched
+          newInfluencerForm.controls['InstagramFollowers'].invalid &&
+          newInfluencerForm.controls['InstagramFollowers'].touched
         ">
         Please enter Instagram Followers.
       </mat-error>
@@ -230,8 +230,8 @@
       <mat-label>Instagram Link</mat-label>
       <input matInput type="text" formControlName="InstagramLink" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['InstagramLink'].invalid &&
-          newInfluencerFrom.controls['InstagramLink'].touched
+          newInfluencerForm.controls['InstagramLink'].invalid &&
+          newInfluencerForm.controls['InstagramLink'].touched
         ">
         Please enter Instagram Link.
       </mat-error>
@@ -242,8 +242,8 @@
       <mat-label>Tiktok Handle</mat-label>
       <input matInput type="text" formControlName="TiktokHandle" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['TiktokHandle'].invalid &&
-          newInfluencerFrom.controls['TiktokHandle'].touched
+          newInfluencerForm.controls['TiktokHandle'].invalid &&
+          newInfluencerForm.controls['TiktokHandle'].touched
         ">
         Please enter Tiktok Handle.
       </mat-error>
@@ -253,8 +253,8 @@
       <mat-label>Tiktok Followers</mat-label>
       <input matInput type="number" formControlName="TiktokFollowers" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['TiktokFollowers'].invalid &&
-          newInfluencerFrom.controls['TiktokFollowers'].touched
+          newInfluencerForm.controls['TiktokFollowers'].invalid &&
+          newInfluencerForm.controls['TiktokFollowers'].touched
         ">
         Please enter Tiktok Followers.
       </mat-error>
@@ -264,8 +264,8 @@
       <mat-label>Tiktok Link</mat-label>
       <input matInput type="text" formControlName="TiktokLink" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['TiktokLink'].invalid &&
-          newInfluencerFrom.controls['TiktokLink'].touched
+          newInfluencerForm.controls['TiktokLink'].invalid &&
+          newInfluencerForm.controls['TiktokLink'].touched
         ">
         Please enter Tiktok Link.
       </mat-error>
@@ -276,8 +276,8 @@
       <mat-label>SnapChat Handle</mat-label>
       <input matInput type="text" formControlName="SnapchatHandle" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['SnapchatHandle'].invalid &&
-          newInfluencerFrom.controls['SnapchatHandle'].touched
+          newInfluencerForm.controls['SnapchatHandle'].invalid &&
+          newInfluencerForm.controls['SnapchatHandle'].touched
         ">
         Please enter SnapChat Handle.
       </mat-error>
@@ -287,8 +287,8 @@
       <mat-label>SnapChat Followers</mat-label>
       <input matInput type="number" formControlName="SnapchatFollowers" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['SnapchatFollowers'].invalid &&
-          newInfluencerFrom.controls['SnapchatFollowers'].touched
+          newInfluencerForm.controls['SnapchatFollowers'].invalid &&
+          newInfluencerForm.controls['SnapchatFollowers'].touched
         ">
         Please enter SnapChat Followers.
       </mat-error>
@@ -298,8 +298,8 @@
       <mat-label>SnapChat Link</mat-label>
       <input matInput type="text" formControlName="SnapchatLink" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['SnapchatLink'].invalid &&
-          newInfluencerFrom.controls['SnapchatLink'].touched
+          newInfluencerForm.controls['SnapchatLink'].invalid &&
+          newInfluencerForm.controls['SnapchatLink'].touched
         ">
         Please enter SnapChat Link.
       </mat-error>
@@ -310,8 +310,8 @@
       <mat-label>Twitter Handle</mat-label>
       <input matInput type="text" formControlName="TwitterHandle" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['TwitterHandle'].invalid &&
-          newInfluencerFrom.controls['TwitterHandle'].touched
+          newInfluencerForm.controls['TwitterHandle'].invalid &&
+          newInfluencerForm.controls['TwitterHandle'].touched
         ">
         Please enter Twitter Handle.
       </mat-error>
@@ -321,8 +321,8 @@
       <mat-label>Twitter Followers</mat-label>
       <input matInput type="number" formControlName="TwitterFollowers" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['TwitterFollowers'].invalid &&
-          newInfluencerFrom.controls['TwitterFollowers'].touched
+          newInfluencerForm.controls['TwitterFollowers'].invalid &&
+          newInfluencerForm.controls['TwitterFollowers'].touched
         ">
         Please enter Twitter Followers.
       </mat-error>
@@ -332,8 +332,8 @@
       <mat-label>Twitter Link</mat-label>
       <input matInput type="text" formControlName="TwitterLink" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['TwitterLink'].invalid &&
-          newInfluencerFrom.controls['TwitterLink'].touched
+          newInfluencerForm.controls['TwitterLink'].invalid &&
+          newInfluencerForm.controls['TwitterLink'].touched
         ">
         Please enter Twitter Link.
       </mat-error>
@@ -344,8 +344,8 @@
       <mat-label>Facebook Handle</mat-label>
       <input matInput type="text" formControlName="FacebookHandle" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['FacebookHandle'].invalid &&
-          newInfluencerFrom.controls['FacebookHandle'].touched
+          newInfluencerForm.controls['FacebookHandle'].invalid &&
+          newInfluencerForm.controls['FacebookHandle'].touched
         ">
         Please enter Facebook Handle.
       </mat-error>
@@ -355,8 +355,8 @@
       <mat-label>Facebook Followers</mat-label>
       <input matInput type="number" formControlName="FacebookFollowers" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['FacebookFollowers'].invalid &&
-          newInfluencerFrom.controls['FacebookFollowers'].touched
+          newInfluencerForm.controls['FacebookFollowers'].invalid &&
+          newInfluencerForm.controls['FacebookFollowers'].touched
         ">
         Please enter Facebook Followers.
       </mat-error>
@@ -366,8 +366,8 @@
       <mat-label>Facebook Link</mat-label>
       <input matInput type="text" formControlName="FacebookLink" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['FacebookLink'].invalid &&
-          newInfluencerFrom.controls['FacebookLink'].touched
+          newInfluencerForm.controls['FacebookLink'].invalid &&
+          newInfluencerForm.controls['FacebookLink'].touched
         ">
         Please enter Facebook Link.
       </mat-error>
@@ -378,8 +378,8 @@
       <mat-label>YouTube Handle</mat-label>
       <input matInput type="text" formControlName="YoutubeHandle" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['YoutubeHandle'].invalid &&
-          newInfluencerFrom.controls['YoutubeHandle'].touched
+          newInfluencerForm.controls['YoutubeHandle'].invalid &&
+          newInfluencerForm.controls['YoutubeHandle'].touched
         ">
         Please enter YouTube Handle.
       </mat-error>
@@ -389,8 +389,8 @@
       <mat-label>YouTube Followers</mat-label>
       <input matInput type="number" formControlName="YoutubeFollowers" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['YoutubeFollowers'].invalid &&
-          newInfluencerFrom.controls['YoutubeFollowers'].touched
+          newInfluencerForm.controls['YoutubeFollowers'].invalid &&
+          newInfluencerForm.controls['YoutubeFollowers'].touched
         ">
         Please enter YouTube Followers.
       </mat-error>
@@ -400,8 +400,8 @@
       <mat-label>YouTube Link</mat-label>
       <input matInput type="text" formControlName="YoutubeLink" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['YoutubeLink'].invalid &&
-          newInfluencerFrom.controls['YoutubeLink'].touched
+          newInfluencerForm.controls['YoutubeLink'].invalid &&
+          newInfluencerForm.controls['YoutubeLink'].touched
         ">
         Please enter YouTube Link.
       </mat-error>
@@ -415,8 +415,8 @@
       <mat-label>Audience Male Percentage</mat-label>
       <input matInput type="number" formControlName="AudienceMalePer" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AudienceMalePer'].invalid &&
-          newInfluencerFrom.controls['AudienceMalePer'].touched
+          newInfluencerForm.controls['AudienceMalePer'].invalid &&
+          newInfluencerForm.controls['AudienceMalePer'].touched
         ">
         Please enter Audience Male Percentage.
       </mat-error>
@@ -426,8 +426,8 @@
       <mat-label>Audience Female Percentage</mat-label>
       <input matInput type="number" formControlName="AudienceFemalePer" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AudienceFemalePer'].invalid &&
-          newInfluencerFrom.controls['AudienceFemalePer'].touched
+          newInfluencerForm.controls['AudienceFemalePer'].invalid &&
+          newInfluencerForm.controls['AudienceFemalePer'].touched
         ">
         Please enter Audience Female Percentage.
       </mat-error>
@@ -440,8 +440,8 @@
       <mat-label>13-17 </mat-label>
       <input matInput type="number" formControlName="AgeGroup1317" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgeGroup1317'].invalid &&
-          newInfluencerFrom.controls['AgeGroup1317'].touched
+          newInfluencerForm.controls['AgeGroup1317'].invalid &&
+          newInfluencerForm.controls['AgeGroup1317'].touched
         ">
         Please enter Age Group Percentage.
       </mat-error>
@@ -451,8 +451,8 @@
       <mat-label>18-24 </mat-label>
       <input matInput type="number" formControlName="AgeGroup1824" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgeGroup1824'].invalid &&
-          newInfluencerFrom.controls['AgeGroup1824'].touched
+          newInfluencerForm.controls['AgeGroup1824'].invalid &&
+          newInfluencerForm.controls['AgeGroup1824'].touched
         ">
         Please enter Age Group Percentage.
       </mat-error>
@@ -462,8 +462,8 @@
       <mat-label>25-34</mat-label>
       <input matInput type="number" formControlName="AgeGroup2534" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgeGroup2534'].invalid &&
-          newInfluencerFrom.controls['AgeGroup2534'].touched
+          newInfluencerForm.controls['AgeGroup2534'].invalid &&
+          newInfluencerForm.controls['AgeGroup2534'].touched
         ">
         Please enter Age Group Percentage.
       </mat-error>
@@ -473,8 +473,8 @@
       <mat-label>35-44</mat-label>
       <input matInput type="number" formControlName="AgeGroup3544" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgeGroup3544'].invalid &&
-          newInfluencerFrom.controls['AgeGroup3544'].touched
+          newInfluencerForm.controls['AgeGroup3544'].invalid &&
+          newInfluencerForm.controls['AgeGroup3544'].touched
         ">
         Please enter Age Group Percentage.
       </mat-error>
@@ -484,8 +484,8 @@
       <mat-label>45-54</mat-label>
       <input matInput type="number" formControlName="AgeGroup4554" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgeGroup4554'].invalid &&
-          newInfluencerFrom.controls['AgeGroup4554'].touched
+          newInfluencerForm.controls['AgeGroup4554'].invalid &&
+          newInfluencerForm.controls['AgeGroup4554'].touched
         ">
         Please enter Age Group Percentage.
       </mat-error>
@@ -495,8 +495,8 @@
       <mat-label>55+ </mat-label>
       <input matInput type="number" formControlName="AgeGroup55" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgeGroup55'].invalid &&
-          newInfluencerFrom.controls['AgeGroup55'].touched
+          newInfluencerForm.controls['AgeGroup55'].invalid &&
+          newInfluencerForm.controls['AgeGroup55'].touched
         ">
         Please enter Age Group Percentage.
       </mat-error>
@@ -510,8 +510,8 @@
         <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AudienceTopCountries1'].invalid &&
-          newInfluencerFrom.controls['AudienceTopCountries1'].touched
+          newInfluencerForm.controls['AudienceTopCountries1'].invalid &&
+          newInfluencerForm.controls['AudienceTopCountries1'].touched
         ">
         Please select a Country.
       </mat-error>
@@ -521,8 +521,8 @@
       <mat-label>Followers Percentage in Country 1 </mat-label>
       <input matInput type="number" formControlName="AudienceTopCountries1Percentage" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AudienceTopCountries1Percentage'].invalid &&
-          newInfluencerFrom.controls['AudienceTopCountries1Percentage'].touched
+          newInfluencerForm.controls['AudienceTopCountries1Percentage'].invalid &&
+          newInfluencerForm.controls['AudienceTopCountries1Percentage'].touched
         ">
         Please enter Percentage.
       </mat-error>
@@ -536,8 +536,8 @@
         <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AudienceTopCountries2'].invalid &&
-          newInfluencerFrom.controls['AudienceTopCountries2'].touched
+          newInfluencerForm.controls['AudienceTopCountries2'].invalid &&
+          newInfluencerForm.controls['AudienceTopCountries2'].touched
         ">
         Please select a Country.
       </mat-error>
@@ -547,8 +547,8 @@
       <mat-label>Followers Percentage in Country 2 </mat-label>
       <input matInput type="number" formControlName="AudienceTopCountries2Percentage" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AudienceTopCountries2Percentage'].invalid &&
-          newInfluencerFrom.controls['AudienceTopCountries2Percentage'].touched
+          newInfluencerForm.controls['AudienceTopCountries2Percentage'].invalid &&
+          newInfluencerForm.controls['AudienceTopCountries2Percentage'].touched
         ">
         Please enter Percentage.
       </mat-error>
@@ -562,8 +562,8 @@
         <mat-option *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
       </mat-select>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AudienceTopCountries3'].invalid &&
-          newInfluencerFrom.controls['AudienceTopCountries3'].touched
+          newInfluencerForm.controls['AudienceTopCountries3'].invalid &&
+          newInfluencerForm.controls['AudienceTopCountries3'].touched
         ">
         Please select a Country.
       </mat-error>
@@ -573,8 +573,8 @@
       <mat-label>Followers Percentage in Country 3 </mat-label>
       <input matInput type="number" formControlName="AudienceTopCountries3Percentage" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AudienceTopCountries3Percentage'].invalid &&
-          newInfluencerFrom.controls['AudienceTopCountries3Percentage'].touched
+          newInfluencerForm.controls['AudienceTopCountries3Percentage'].invalid &&
+          newInfluencerForm.controls['AudienceTopCountries3Percentage'].touched
         ">
         Please enter Percentage.
       </mat-error>
@@ -596,8 +596,8 @@
       <mat-label>Contact Person</mat-label>
       <input matInput type="text" formControlName="AgencyContactPerson" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgencyContactPerson'].invalid &&
-          newInfluencerFrom.controls['AgencyContactPerson'].touched
+          newInfluencerForm.controls['AgencyContactPerson'].invalid &&
+          newInfluencerForm.controls['AgencyContactPerson'].touched
         ">
         Please enter a Contact Person.
       </mat-error>
@@ -607,8 +607,8 @@
       <mat-label>Phone Number</mat-label>
       <input matInput type="number" formControlName="AgencyNumber" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgencyNumber'].invalid &&
-          newInfluencerFrom.controls['AgencyNumber'].touched
+          newInfluencerForm.controls['AgencyNumber'].invalid &&
+          newInfluencerForm.controls['AgencyNumber'].touched
         ">
         Please enter a Contact Person.
       </mat-error>
@@ -618,8 +618,8 @@
       <mat-label>Email</mat-label>
       <input matInput type="email" formControlName="AgencyEmail" autocomplete="off"  />
       <mat-error *ngIf="
-          newInfluencerFrom.controls['AgencyEmail'].invalid &&
-          newInfluencerFrom.controls['AgencyEmail'].touched
+          newInfluencerForm.controls['AgencyEmail'].invalid &&
+          newInfluencerForm.controls['AgencyEmail'].touched
         ">
         Please enter a Contact Person.
       </mat-error>
@@ -633,8 +633,8 @@
       <mat-label>Previous Brands</mat-label>
       <textarea matInput formControlName="PreviousBrands" rows="2" autocomplete="off"></textarea>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['PreviousBrands'].invalid &&
-          newInfluencerFrom.controls['PreviousBrands'].touched
+          newInfluencerForm.controls['PreviousBrands'].invalid &&
+          newInfluencerForm.controls['PreviousBrands'].touched
         ">
         Please enter previous brands.
       </mat-error>
@@ -645,8 +645,8 @@
       <mat-label>Biography </mat-label>
       <textarea matInput formControlName="Bio" rows="2" autocomplete="off"></textarea>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Bio'].invalid &&
-          newInfluencerFrom.controls['Bio'].touched
+          newInfluencerForm.controls['Bio'].invalid &&
+          newInfluencerForm.controls['Bio'].touched
         ">
         Please enter previous brands.
       </mat-error>
@@ -658,15 +658,15 @@
       <mat-label>Notes </mat-label>
       <textarea matInput formControlName="Notes" rows="2" autocomplete="off"></textarea>
       <mat-error *ngIf="
-          newInfluencerFrom.controls['Notes'].invalid &&
-          newInfluencerFrom.controls['Notes'].touched
+          newInfluencerForm.controls['Notes'].invalid &&
+          newInfluencerForm.controls['Notes'].touched
         ">
         Please enter previous brands.
       </mat-error>
     </mat-form-field>
   </div>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="!newInfluencerFrom.valid">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!newInfluencerForm.valid">
       Add new Influencer
     </button>
   </form>

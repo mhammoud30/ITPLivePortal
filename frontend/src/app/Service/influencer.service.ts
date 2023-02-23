@@ -22,6 +22,16 @@ export class InfluencerService{
     return this.http.get<InfluencerModel[]>(`${this.influencerApiURL}/getInfluencers`)
   }
 
+  deleteInfluencer(inputdata:any){
+    return this.http.delete(`${this.influencerApiURL}/deleteInfluencer/${inputdata}`)
+  }
 
+  getInfluencer(inputdata:any):Observable<InfluencerModel>{
+    return this.http.get<InfluencerModel>(`${this.influencerApiURL}/getInfluencer/${inputdata}`)
+  }
+
+  updateInfluencer(inputdata:any, id:any){
+    return this.http.patch(`${this.influencerApiURL}/updateInfluencer/${id}`, inputdata)
+  }
 
 }

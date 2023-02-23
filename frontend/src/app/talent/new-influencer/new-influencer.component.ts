@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InfluencerService } from 'src/app/Service/influencer.service';
-import { genders, languages, verticals, countries } from 'src/assets/influencer-form-arrays';
+import { genders, languages, verticals, countries, nationalities } from 'src/assets/influencer-form-arrays';
 import * as alertify from 'alertifyjs';
 
 @Component({
@@ -11,17 +11,17 @@ import * as alertify from 'alertifyjs';
   styleUrls: ['./new-influencer.component.css']
 })
 export class NewInfluencerComponent {
-  newInfluencerFrom: FormGroup;
+  newInfluencerForm: FormGroup;
   data:any;
 
   genders = genders;
   languages = languages;
   verticals = verticals;
   countries = countries;
-
+  nationalities = nationalities;
 
   constructor(private formBuilder: FormBuilder, private service: InfluencerService, private route: Router) {
-    this.newInfluencerFrom = this.formBuilder.group({
+    this.newInfluencerForm = this.formBuilder.group({
       Name: ['', [Validators.required]],
       Gender: ['', [Validators.required]],
       Number: ['',],
@@ -100,7 +100,7 @@ export class NewInfluencerComponent {
   }
 
   onSubmit() {
-    this.service.addInfluencer(this.newInfluencerFrom.value).subscribe( (res) => {
+    this.service.addInfluencer(this.newInfluencerForm.value).subscribe( (res) => {
 
       this.data = res;
       if(this.data.status === "success"){

@@ -1,9 +1,9 @@
 const db = require('../config/db.config');
 const { logger } = require('../utils/logger');
-const { createNewInfluencer: createNewInfluencerQuery, getAllInfluecers : getAllInfluencersQuery} = require('../database/queries');
+const { createNewInfluencer: createNewInfluencerQuery, getAllInfluecers: getAllInfluencersQuery, deleteInfluencer: deleteInfluencerQuery, findInfluencerByID : findInfluencerByIDQuery, updateInfluencer: updateInfluencerQuery } = require('../database/queries');
 
 class Influencer {
-    constructor(Name, Gender, Number, Email, MainContentLanguage, SubContentLang, MainVertical, SubVertical, Occupation, ItpRelationship, Nationality, SecondNationality, CountryLocation, CityLocation, Address, InstagramHandle, InstagramFollowers, InstagramLink, TiktokHandle, TiktokFollowers, TiktokLink, SnapchatHandle, SnapchatFollowers, SnapchatLink, TwitterHandle, TwitterFollowers, TwitterLink, FacebookHandle, FacebookFollowers, FacebookLink, YoutubeHandle, YoutubeFollowers, YoutubeLink, AudienceMalePer, AudienceFemalePer, AgeGroup1317, AgeGroup1824, AgeGroup2534, AgeGroup3544, AgeGroup4554, AgeGroup55, AudienceTopCountries1, AudienceTopCountries1Percentage, AudienceTopCountries2, AudienceTopCountries2Percentage, AudienceTopCountries3, AudienceTopCountries3Percentage, KSALicense, UAELicense, AgencyContactPerson, AgencyNumber, AgencyEmail, PreviousBrands, Bio, Notes, Status){
+    constructor(Name, Gender, Number, Email, MainContentLanguage, SubContentLang, MainVertical, SubVertical, Occupation, ItpRelationship, Nationality, SecondNationality, CountryLocation, CityLocation, Address, InstagramHandle, InstagramFollowers, InstagramLink, TiktokHandle, TiktokFollowers, TiktokLink, SnapchatHandle, SnapchatFollowers, SnapchatLink, TwitterHandle, TwitterFollowers, TwitterLink, FacebookHandle, FacebookFollowers, FacebookLink, YoutubeHandle, YoutubeFollowers, YoutubeLink, AudienceMalePer, AudienceFemalePer, AgeGroup1317, AgeGroup1824, AgeGroup2534, AgeGroup3544, AgeGroup4554, AgeGroup55, AudienceTopCountries1, AudienceTopCountries1Percentage, AudienceTopCountries2, AudienceTopCountries2Percentage, AudienceTopCountries3, AudienceTopCountries3Percentage, KSALicense, UAELicense, AgencyContactPerson, AgencyNumber, AgencyEmail, PreviousBrands, Bio, Notes, Status) {
         this.Name = Name;
         this.Gender = Gender;
         this.Number = Number;
@@ -62,7 +62,7 @@ class Influencer {
         this.Status = Status;
     }
 
-    static create(newInfluencer, cb){
+    static create(newInfluencer, cb) {
         db.query(createNewInfluencerQuery, [
             newInfluencer.Name,
             newInfluencer.Gender,
@@ -121,12 +121,12 @@ class Influencer {
             newInfluencer.Notes,
             newInfluencer.Status,
         ], (err, res) => {
-            if (err){
-            logger.error(err.message);
-            cb(err, null);
-            return;
+            if (err) {
+                logger.error(err.message);
+                cb(err, null);
+                return;
             }
-            cb(null,{} )
+            cb(null, {})
         }
         )
     }
@@ -134,20 +134,114 @@ class Influencer {
 
     static getAllInfluencers(cb) {
         db.query(getAllInfluencersQuery, (err, res) => {
-            if(err){
+            if (err) {
                 logger.error(err.message);
-                cb(err,null);
+                cb(err, null);
                 return;
             }
-            if(res.length){
-                cb(null,res);
+            if (res.length) {
+                cb(null, res);
                 return;
             }
-            cb({kind :'no_results'}, null);
+            cb({ kind: 'no_results' }, null);
+        })
+    }
+
+    static deleteInfluencer(id, cb) {
+        db.query(deleteInfluencerQuery, id, (err, res) => {
+            if (err) {
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            cb(null, {})
         })
     }
 
 
+    static findByID(id, cb) {
+        db.query(findInfluencerByIDQuery, id, (err, res) => {
+            if(err){
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if(res.length){
+                cb(null, res[0]);
+                return;
+            }
+            cb({kind: "not_found"}, null);
+        })
+    }
+
+    static update(influencer, id, cb){
+        db.query(updateInfluencerQuery, [
+            influencer.Name,
+            influencer.Gender,
+            influencer.Number,
+            influencer.Email,
+            influencer.MainContentLanguage,
+            influencer.SubContentLang,
+            influencer.MainVertical,
+            influencer.SubVertical,
+            influencer.Occupation,
+            influencer.ItpRelationship,
+            influencer.Nationality,
+            influencer.SecondNationality,
+            influencer.CountryLocation,
+            influencer.CityLocation,
+            influencer.Address,
+            influencer.InstagramHandle,
+            influencer.InstagramFollowers,
+            influencer.InstagramLink,
+            influencer.TiktokHandle,
+            influencer.TiktokFollowers,
+            influencer.TiktokLink,
+            influencer.SnapchatHandle,
+            influencer.SnapchatFollowers,
+            influencer.SnapchatLink,
+            influencer.TwitterHandle,
+            influencer.TwitterFollowers,
+            influencer.TwitterLink,
+            influencer.FacebookHandle,
+            influencer.FacebookFollowers,
+            influencer.FacebookLink,
+            influencer.YoutubeHandle,
+            influencer.YoutubeFollowers,
+            influencer.YoutubeLink,
+            influencer.AudienceMalePer,
+            influencer.AudienceFemalePer,
+            influencer.AgeGroup1317,
+            influencer.AgeGroup1824,
+            influencer.AgeGroup2534,
+            influencer.AgeGroup3544,
+            influencer.AgeGroup4554,
+            influencer.AgeGroup55,
+            influencer.AudienceTopCountries1,
+            influencer.AudienceTopCountries1Percentage,
+            influencer.AudienceTopCountries2,
+            influencer.AudienceTopCountries2Percentage,
+            influencer.AudienceTopCountries3,
+            influencer.AudienceTopCountries3Percentage,
+            influencer.KSALicense,
+            influencer.UAELicense,
+            influencer.AgencyContactPerson,
+            influencer.AgencyNumber,
+            influencer.AgencyEmail,
+            influencer.PreviousBrands,
+            influencer.Bio,
+            influencer.Notes,
+            id
+        ],(err, res) => {
+            if (err) {
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            cb(null, {})
+        }
+         )
+    }
 }
 
 module.exports = Influencer;

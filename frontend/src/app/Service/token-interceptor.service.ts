@@ -16,11 +16,11 @@ export class TokenInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
      let jwttoken = req.clone({
       setHeaders:{
-        Authorization: `Bearer ${this.token}`
+        Authorization: `${this.token}`
       }
     });
     return next.handle(jwttoken);
- 
+
   }
 
 }
