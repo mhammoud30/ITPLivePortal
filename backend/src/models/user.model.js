@@ -3,13 +3,14 @@ const { createNewUser: createNewUserQuery, findUserByEmail: findUserByEmailQuery
 const { logger } = require('../utils/logger');
 
 class User {
-    constructor(name, email, password, role, status, privilegeLevel){
+    constructor(name, email, password, role, status, privilegeLevel, parentID){
         this.name = name;
         this.email = email;
         this.password = password;
         this.role = role;
         this.status = status;
-        this.privilegeLevel = privilegeLevel
+        this.privilegeLevel = privilegeLevel;
+        this.parentID = parentID;
     }
 
     static create(newUser, cb){
@@ -20,7 +21,8 @@ class User {
                 newUser.password,
                 newUser.role,
                 newUser.status,
-                newUser.privilegeLevel
+                newUser.privilegeLevel,
+                newUser.parentID
             ], (err, res) => {
                 if (err) {
                     logger.error(err.message);
@@ -33,7 +35,8 @@ class User {
                     email: newUser.email,
                     role: newUser.role,
                     status: newUser.status,
-                    privilegeLevel: newUser.privilegeLevel
+                    privilegeLevel: newUser.privilegeLevel,
+                    parentID: newUser.parentID
                 });
             }
             );

@@ -1,6 +1,6 @@
 const db = require('../config/db.config');
 
-const {createNewLog: createNewLogQuery} = require('../database/log.queries');
+const { getInfluencerLogs : getInfluencerLogsQuery , createNewLog: createNewLogQuery, getAllLogs : getAllLogsQuery} = require('../database/log.queries');
 
 const {logger} = require('../utils/logger');
 
@@ -23,10 +23,42 @@ class Log{
                     cb(err, null);
                     return;
                 }
-                cb(null, { logID : res.insertID})
+                cb(null, { logID : res.insertId})
                 
                 
             })
     }
 
+    static getAllLogs(cb){
+        db.query(getAllLogsQuery, (err, res)=> {
+            if (err) {
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if (res.length) {
+                cb(null, res);
+                return;
+            }
+            cb({ kind: 'no_results' }, null);
+        })
+    }
+
+    static getInfluencerLogsByID(id, cb){
+        db.query(getInfluencerLogsQuery, id, (err, res) => {
+            if(err){
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if(res.length){
+                cb(null, res);
+                return;
+            }
+            cb({kind: "not_found"}, null);
+        })
+    }
+
 }
+
+module.exports = Log;

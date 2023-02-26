@@ -109,3 +109,21 @@ exports.updateInfluencer = (req, res) => {
     })
 
 }
+
+exports.getInfluencerNames = (req, res) => {
+    Influencer.getInfluencerNames( (err, data) => {
+        if(err){
+            res.status(500).send({
+                status: 'error',
+                message: err.message
+            });
+            return;
+        }
+        if(data){
+           
+            res.status(200).send(data);
+            return;
+        }
+        
+    })
+}

@@ -26,6 +26,7 @@ import { NewCelebrityComponent } from './talent/new-celebrity/new-celebrity.comp
 import { CelebritiesComponent } from './talent/celebrities/celebrities.component';
 import { CelebrityProfileComponent } from './talent/celebrity-profile/celebrity-profile.component';
 import { ModalpopupCelebrityComponent } from './talent/modalpopup-celebrity/modalpopup-celebrity.component';
+import { LogsComponent } from './talent/logs/logs.component';
 
 
 
@@ -47,6 +48,7 @@ import { ModalpopupCelebrityComponent } from './talent/modalpopup-celebrity/moda
     CelebritiesComponent,
     CelebrityProfileComponent,
     ModalpopupCelebrityComponent,
+    LogsComponent,
   ],
   imports: [
     BrowserModule,

@@ -32,10 +32,7 @@ export class InfluencersComponent implements OnInit {
 
 
 
-  constructor(private service: InfluencerService, private route: Router, private dialog: MatDialog ) {
-
-
-  }
+  constructor(private service: InfluencerService, private route: Router, private dialog: MatDialog ) {}
 
 
   ngOnInit(): void {

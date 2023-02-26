@@ -21,7 +21,7 @@ class Package {
                 cb(err, null);
                 return;
             }
-            cb(null, {packageID : res.insertID})
+            cb(null, {packageID : res.insertId})
             
             
         })

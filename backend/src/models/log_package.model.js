@@ -1,5 +1,6 @@
 const db = require('../config/db.config');
 const {createNewLogPackage: createNewLogPackageQuery} = require('../database/log.queries');
+const {logger} = require('../utils/logger');
 
 class logPackage {
     constructor( logID, packageID){
@@ -17,10 +18,10 @@ class logPackage {
                 cb(err, null);
                 return;
             }
-            cb(null , {logPackageID : res.insertID})
+            cb(null , {logPackageID : res.insertId})
             
         })
     }
 }
 
-module.exports = Package;
+module.exports = logPackage;

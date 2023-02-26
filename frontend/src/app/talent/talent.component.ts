@@ -39,6 +39,10 @@ export class TalentComponent implements OnInit {
     this.router.navigate(['home/celebrities'])
   }
 
+  redirectToLogs(){
+    this.router.navigate(['home/logs'])
+  }
+
   getPrivilegeLevel(){
     var token = localStorage.getItem('token');
     var parts = token!.split('.');

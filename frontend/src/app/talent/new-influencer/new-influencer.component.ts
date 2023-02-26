@@ -97,7 +97,7 @@ export class NewInfluencerComponent {
 
   backButton(){
     this.route.navigate(['home/talent'])
-  }
+  } 
 
   onSubmit() {
     this.service.addInfluencer(this.newInfluencerForm.value).subscribe( (res) => {

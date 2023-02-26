@@ -6,6 +6,7 @@ export interface UserModel {
   role: string,
   status: string,
   privilegeLevel: number,
+  parentID: number,
 }
 
 

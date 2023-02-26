@@ -447,3 +447,5 @@ export const nationalities = [
 
 export const currencies = ["USD", "AED", "BHD", "SAR", "OMR", "QAR", "KWD"]
 
+
+export const platforms = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Facebook', 'Youtube']

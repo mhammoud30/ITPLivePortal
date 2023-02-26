@@ -3,10 +3,10 @@ const { hash: hashPassword, compare: comparePassword } = require('../utils/passw
 const { generate: generateToken } = require('../utils/token');
 
 exports.signup = (req, res) => {
-    const { name, email, password, status, role, privilegeLevel } = req.body;
+    const { name, email, password, status, role, privilegeLevel, parentID } = req.body;
     const hashedPassword = hashPassword(password.trim());
 
-    const user = new User(name.trim(), email.trim(), hashedPassword, status.trim(), role.trim(), privilegeLevel);
+    const user = new User(name.trim(), email.trim(), hashedPassword, status.trim(), role.trim(), privilegeLevel, parentID);
   
     User.create(user, (err, data) => {
         if (err) {
@@ -57,6 +57,7 @@ exports.signin = (req, res) => {
                         status: data.status,
                         role: data.role,
                         privilegeLevel: data.privilegeLevel,
+                        parentID: data.parentID,
                         
                     }
                 });
@@ -97,6 +98,7 @@ exports.getUser = (req, res) => {
                         status: data.status,
                         role: data.role,
                         privilegeLevel: data.privilegeLevel,
+                        parentID: data.parentID,
                 });
                 return;   
         }

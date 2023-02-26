@@ -1,5 +1,5 @@
 const createNewUser = `
-INSERT INTO users VALUES(null, ?, ?, ?, ?, ?,?)
+INSERT INTO users VALUES(null, ?, ?, ?, ?, ?,?,?)
 `;
 
 const findUserByEmail = `
@@ -21,6 +21,8 @@ INSERT INTO influencer Values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
 `;
 
 const getAllInfluecers = ` Select * FROM influencer Where Status = 'Active'`
+
+const getInfluencerNames = ` Select Name FROM influencer Where Status = 'Active'`
 
 const deleteInfluencer = `UPDATE influencer SET Status = 'inActive' WHERE id = ?;
 `
@@ -86,6 +88,7 @@ module.exports = {
     deleteCelebrity,
     findCelebrityByID,
     updateInfluencer,
-    updateCelebrity
+    updateCelebrity,
+    getInfluencerNames
 };
 

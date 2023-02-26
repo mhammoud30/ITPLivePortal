@@ -15,6 +15,9 @@ router.route('/deleteInfluencer/:id')
 router.route('/getInfluencer/:id')
     .get(asyncHandler(influencerController.getInfluencer))
 
+router.route('/getInfluencerNames')
+    .get(asyncHandler(influencerController.getInfluencerNames))
+
 router.route('/updateInfluencer/:id')
     .patch(asyncHandler(influencerController.updateInfluencer))
 

@@ -34,4 +34,7 @@ export class InfluencerService{
     return this.http.patch(`${this.influencerApiURL}/updateInfluencer/${id}`, inputdata)
   }
 
+  getInfluencerNames(){
+    return this.http.get(`${this.influencerApiURL}/getInfluencerNames`)
+  }
 }

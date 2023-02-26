@@ -5,6 +5,7 @@ const cors = require('cors');
 const authRoute = require('./routes/auth.route');
 const influencerRoute = require('./routes/influencer.route');
 const celebrityRoute = require('./routes/celebrity.route');
+const logRoute = require('./routes/log.route');
 const { httpLogStream } = require('./utils/logger');
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(cors());
 app.use('/api/auth', authRoute);
 app.use('/api/influencers', influencerRoute);
 app.use('/api/celebrities', celebrityRoute);
+app.use('/api/logs', logRoute);
 app.get('/', (req, res) => {
     res.status(200).send({
         status: "success",
