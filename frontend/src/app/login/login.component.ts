@@ -9,14 +9,14 @@ import { UserService } from '../Service/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   data: any;
 
   ngOnInit(): void {
     localStorage.clear();
   }
- 
+
 
   constructor(private formBuilder: FormBuilder, private service: UserService, private route: Router) {
     this.loginForm = this.formBuilder.group({
@@ -27,15 +27,18 @@ export class LoginComponent {
 
 
   onSubmit() {
-    const email = this.loginForm.value.email ;
-    const password = this.loginForm.get('password')?.value;
 
     this.service.logIn(this.loginForm.value).subscribe((res) => {
 
       this.data = res;
       if(this.data!=null){
         localStorage.setItem('token',this.data.data.token)
-        this.route.navigate(['home/talent'])
+        if(this.data.data.role === 'superadmin' || this.data.data.role === 'head of talent') {
+          /* change route later to home page with all sections available */
+          this.route.navigate(['talent/forms'])
+          }else {
+            this.route.navigate([`${this.data.data.role}/forms`])
+          }
       }else{
         alertify("Login failed.")
       }

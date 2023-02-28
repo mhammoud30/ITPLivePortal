@@ -53,7 +53,7 @@ exports.create = (req, res) => {
 
 }
 
-exports.getLogs = (req, res) => {
+exports.getLogs =  (req, res) => {
     Log.getAllLogs( (err, data) => {
         if(err){
             res.status(500).send({

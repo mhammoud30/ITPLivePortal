@@ -9,8 +9,22 @@
     <a mat-icon-button routerLink="influencers">
     <mat-icon class="icon">search</mat-icon>
     </a>
-    <span class="icon-spacer"></span>
-    <mat-icon class="icon">notifications</mat-icon>
+
+    <div *ngIf=" user.role === 'head of talent'">
+      <a mat-icon-button  routerLink="briefsFromSales">
+      <span class="icon-spacer"></span>
+      <mat-icon class="icon">notifications</mat-icon>
+      <span *ngIf="talentHeadNotificationCount.data.num_rows > 0 " class="notification-mark"> {{ talentHeadNotificationCount.data.num_rows }} </span>
+      </a>
+    </div>
+    <div *ngIf="user.role === 'talent'">
+      <a mat-icon-button  routerLink="tasksFromTalentHead">
+      <span class="icon-spacer"></span>
+      <mat-icon class="icon">notifications</mat-icon>
+      <span *ngIf="talentEmployeeNotificationCount.data.num_rows > 0 " class="notification-mark"> {{ talentEmployeeNotificationCount.data.num_rows}} </span>
+      </a>
+    </div>
+
     <span class="icon-spacer"></span>
     <mat-icon class="icon">account_circle</mat-icon>
     <span class="icon-spacer"></span>
@@ -22,18 +36,18 @@
 
 <mat-sidenav-container>
   <mat-sidenav mode="side" opened #sidenav="matSidenav">
-    <img class="avatar mat-elevation-z8" src="../../assets/IMG_5891.jpg" />
+    <!-- <img class="avatar mat-elevation-z8" src="../../assets/IMG_5891.jpg" /> -->
 
     <h4>{{user.name}} {{userID}}</h4>
-    <p class="designation">{{user.role}} </p>
-    <p class="designation">Full stack engineer</p>
+    <H3 >{{user.role}} </H3>
+    <p class="designation"></p>
 
 <mat-divider></mat-divider>
-    <button mat-button class="menu-button" routerLink="talent" >
+    <button mat-button class="menu-button" routerLink="forms" >
       <mat-icon>home</mat-icon>
       <span>Talent Forms</span>
   </button>
-  <button mat-button class="menu-button">
+  <!-- <button mat-button class="menu-button">
       <mat-icon>person</mat-icon>
       <span>Profile</span>
   </button>
@@ -41,7 +55,7 @@
       <mat-icon>info</mat-icon>
       <span>About</span>
   </button>
-
+ -->
   <mat-divider></mat-divider>
 
   <button mat-button class="menu-button">

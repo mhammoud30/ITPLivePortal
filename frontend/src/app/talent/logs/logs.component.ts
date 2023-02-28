@@ -91,7 +91,7 @@ export class LogsComponent implements OnInit {
 
 
   backButton() {
-    this.route.navigate(['home/talent'])
+    this.route.navigate(['talent/forms'])
   }
 
   displayedColumns: string[] = ['Influencer', 'Campaign', 'Platform', 'Deliverable', 'Currency', 'Rate', 'Contact', 'Date'];

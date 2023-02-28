@@ -3,7 +3,7 @@ import  { HttpClient} from '@angular/common/http'
 import { LogModel } from '../Model/LogModel';
 import { Observable } from 'rxjs';
 
-@Injectable({
+@Injectable({ 
   providedIn: 'root'
 })
 export class LogService {

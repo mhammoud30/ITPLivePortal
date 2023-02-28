@@ -188,7 +188,7 @@ export class ModalpopupCelebrityComponent implements OnInit{
   }
 
   backButton() {
-    this.route.navigate(['home/talent'])
+    this.route.navigate(['talent/forms'])
   }
 
   onSubmit() {
@@ -200,7 +200,7 @@ export class ModalpopupCelebrityComponent implements OnInit{
       if (this.data.status === "success") {
         alertify.success("Celebrity updated successfully.")
         this.dialogRef.close();
-        this.route.navigate([`home/celebrities`])
+        this.route.navigate([`talent/celebrities`])
       }
       else {
         alertify.error("Celebrity was not updated");

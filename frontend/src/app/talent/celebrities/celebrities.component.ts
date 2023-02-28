@@ -75,11 +75,11 @@ export class CelebritiesComponent implements OnInit  {
   onRowClicked(row: any) {
     console.log(row.ID);
 
-    this.route.navigate([`home/celebrityProfile/${row.ID}`])
+    this.route.navigate([`talent/celebrityProfile/${row.ID}`])
   }
 
   backButton() {
-    this.route.navigate(['home/talent'])
+    this.route.navigate(['talent/forms'])
   }
 
   displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'Action'];

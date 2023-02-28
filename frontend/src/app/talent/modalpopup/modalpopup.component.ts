@@ -187,7 +187,7 @@ export class ModalpopupComponent implements OnInit {
   }
 
   backButton() {
-    this.route.navigate(['home/talent'])
+    this.route.navigate(['talent/forms'])
   }
 
   onSubmit() {
@@ -199,7 +199,7 @@ export class ModalpopupComponent implements OnInit {
       if (this.data.status === "success") {
         alertify.success("Influencer updated successfully.")
         this.dialogRef.close();
-        this.route.navigate([`home/influencers`])
+        this.route.navigate([`talent/influencers`])
       }
       else {
         alertify.error("Influencer was not updated");

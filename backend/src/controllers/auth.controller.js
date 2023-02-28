@@ -51,7 +51,7 @@ exports.signin = (req, res) => {
                     status: 'success',
                     data: {
                         token,
-                        id: data.id,
+                        id: data.id, 
                         name: data.name,
                         email: data.email,
                         status: data.status,
@@ -99,6 +99,36 @@ exports.getUser = (req, res) => {
                         role: data.role,
                         privilegeLevel: data.privilegeLevel,
                         parentID: data.parentID,
+                });
+                return;   
+        }
+        res.status(401).send({
+            status: 'error',
+            message: 'not found'
+        });
+    });
+
+}
+
+exports.getUserIdNames = (req, res) => {
+    User.getUserIdNames((err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    status: 'error',
+                    message: `Users were not found`
+                });
+                return;
+            }
+            res.status(500).send({
+                status: 'error',
+                message: err.message
+            });
+            return;
+        }
+        if (data) {
+                res.status(200).send({
+                        data
                 });
                 return;   
         }

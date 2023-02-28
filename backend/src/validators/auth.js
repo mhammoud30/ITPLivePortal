@@ -5,7 +5,6 @@ const signup = (req, res, next) => {
     const schema = Joi.object().keys({
         name: Joi.string()
             .trim()
-            .alphanum()
             .min(3)
             .max(100)
             .required(),
@@ -25,14 +24,15 @@ const signup = (req, res, next) => {
             .required(),
         role: Joi.string()
             .trim()
-            .valid('admin', 'user')
+            .valid('admin', 'user', 'talent', 'sales', 'superadmin', 'head of talent', 'head of sales')
             .default('user')
             .required(),
         privilegeLevel: Joi.number()
             .min(1)
             .max(10)
             .default(1)
-            .required()    
+            .required(),
+        parentID: Joi.required()
     });
     validatorHandler(req, res, next, schema);
 };

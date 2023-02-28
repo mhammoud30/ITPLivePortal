@@ -18,8 +18,9 @@ import { MatPaginatorModule} from '@angular/material/paginator'
 import { MatSortModule} from '@angular/material/sort'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatRadioModule } from '@angular/material/radio'
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMenuModule } from '@angular/material/menu';
+
 @NgModule({
   exports: [
     MatInputModule,
@@ -38,7 +39,9 @@ import { DomSanitizer } from '@angular/platform-browser';
     MatSortModule,
     MatDialogModule,
     MatRadioModule,
-    
+    MatDatepickerModule,
+    MatMenuModule
+
 
 
 

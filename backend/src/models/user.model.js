@@ -1,5 +1,5 @@
 const db = require('../config/db.config');
-const { createNewUser: createNewUserQuery, findUserByEmail: findUserByEmailQuery, findUserByID: findUserByIDQuery } = require('../database/queries');
+const { createNewUser: createNewUserQuery, findUserByEmail: findUserByEmailQuery, findUserByID: findUserByIDQuery, getTalentUserNames: getTalentUserNames } = require('../database/queries');
 const { logger } = require('../utils/logger');
 
 class User {
@@ -30,7 +30,7 @@ class User {
                     return;
                 }
                 cb(null, {
-                    id : res.insertID,
+                    id : res.insertId,
                     name: newUser.name,
                     email: newUser.email,
                     role: newUser.role,
@@ -66,6 +66,20 @@ class User {
             }
             if(res.length){
                 cb(null, res[0]);
+                return;
+            }
+            cb({kind: "not_found"}, null);
+        })
+    }
+    static getUserIdNames(cb){
+        db.query(getTalentUserNames, (err, res) =>{
+            if(err){
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if(res.length){
+                cb(null, res);
                 return;
             }
             cb({kind: "not_found"}, null);

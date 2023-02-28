@@ -43,7 +43,7 @@ export class InfluencerProfileComponent implements OnInit{
     })}
 
   backButton() {
-    this.route.navigate(['home/talent'])
+    this.route.navigate(['talent/forms'])
   }
 
   GetLogs(id:any) {

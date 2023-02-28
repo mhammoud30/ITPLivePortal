@@ -14,7 +14,7 @@ export class CelebrityService {
   celebrityApiURL = 'http://localhost:3000/api/celebrities'
 
   addCelebrity(inputdata:any){
-    return this.http.post(`${this.celebrityApiURL}/addCelebrity`, inputdata)
+    return this.http.post(`${this.celebrityApiURL}/createCelebrity`, inputdata)
   }
 
   getCelebrities():Observable<InfluencerModel[]>{
@@ -33,5 +33,5 @@ export class CelebrityService {
     return this.http.patch(`${this.celebrityApiURL}/updateCelebrity/${id}`, inputdata)
   }
 
-  
+
 }

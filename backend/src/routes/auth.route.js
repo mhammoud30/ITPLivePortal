@@ -13,6 +13,8 @@ router.route('/signin')
 router.route('/getUser/:id')
     .get(asyncHandler(authController.getUser))    
 
+router.route('/getUserIdNames')
+    .get(asyncHandler(authController.getUserIdNames))
 module.exports = router;
 
 

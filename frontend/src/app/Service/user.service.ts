@@ -47,5 +47,9 @@ export class UserService {
     return userID;
   }
 
-  
+  getUserNames(){
+    return this.http.get(`${this.authApiURL}/getUserIdNames`)
+  }
+
+
 }

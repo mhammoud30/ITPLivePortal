@@ -10,6 +10,10 @@ const findUserByID = `
 SELECT * FROM users WHERE id = ?
 `;
 
+const getTalentUserNames= `
+SELECT id, Name FROM users Where role = 'talent'
+`
+
 // influencer queries
 const createNewInfluencer = `
 INSERT INTO influencer Values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
@@ -89,6 +93,6 @@ module.exports = {
     findCelebrityByID,
     updateInfluencer,
     updateCelebrity,
-    getInfluencerNames
+    getTalentUserNames,
 };
 

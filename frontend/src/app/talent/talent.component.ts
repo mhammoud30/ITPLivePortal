@@ -12,7 +12,7 @@ export class TalentComponent implements OnInit {
 
   constructor(private router: Router){
 
-
+ 
   }
 
   ngOnInit(): void {
@@ -20,27 +20,27 @@ export class TalentComponent implements OnInit {
   }
 
   redirectToInfluencers(){
-    this.router.navigate(['home/influencers'])
+    this.router.navigate(['talent/influencers'])
   }
 
   redirectToNewInfluencer(){
-    this.router.navigate(['home/newInfluencer'])
+    this.router.navigate(['talent/newInfluencer'])
   }
 
   redirectToNewLog(){
-    this.router.navigate(['home/newLog'])
+    this.router.navigate(['talent/newLog'])
   }
 
   redirectToNewCelebrity(){
-    this.router.navigate(['home/newCelebrity'])
+    this.router.navigate(['talent/newCelebrity'])
   }
 
   redirectToCelebrities(){
-    this.router.navigate(['home/celebrities'])
+    this.router.navigate(['talent/celebrities'])
   }
 
   redirectToLogs(){
-    this.router.navigate(['home/logs'])
+    this.router.navigate(['talent/logs'])
   }
 
   getPrivilegeLevel(){

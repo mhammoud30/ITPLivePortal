@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 })
 export class CelebrityProfileComponent implements OnInit{
   id: any;
-  celeberityData : any;
+  celebrityData : any;
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute, private service: CelebrityService){}
 
@@ -23,12 +23,11 @@ export class CelebrityProfileComponent implements OnInit{
 
   GetCelebrityData(inputdata: any) {
     return this.service.getCelebrity(inputdata).subscribe((item) => {
-        this.celeberityData = item;
+        this.celebrityData = item;
 
     })}
 
   backButton() {
-    this.route.navigate(['home/talent'])
+    this.route.navigate(['talent/forms'])
   }
-
 }

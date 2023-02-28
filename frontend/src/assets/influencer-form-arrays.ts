@@ -445,7 +445,12 @@ export const nationalities = [
   "South Korean",
   "Spanish", "Sri Lankan", "Sudanese", "Surinamese", "Swazi", "Swedish", "Swiss", "Syrian", "Taiwanese", "Tajik", "Tanzanian", "Thai", "Togolese", "Tongan", "Trinidadian or Tobagonian", "Tunisian",  "Turkish",  "Turkmen",  "Tuvaluan",  "Ugandan",  "Ukrainian",  "Uruguayan",  "Uzbekistani",  "Vanuatuan",  "Vatican City State",  "Venezuelan",  "Vietnamese",  "Welsh",  "Yemeni",  "Zambian",  "Zimbabwean"]
 
-export const currencies = ["USD", "AED", "BHD", "SAR", "OMR", "QAR", "KWD"]
+export const currencies = [ "AED","SAR"]
 
 
 export const platforms = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Facebook', 'Youtube']
+
+
+export const clientIndustries = ["Beauty", "Lifestyle", "Sports", "Food", "Gaming", "Business", "Travel", "Comedy", "Celebrities", "Health", "Nutrition", "Bodybuilding", "Humanitarian", "Automotives", "Tech", "Furniture", "Shopping", "NGO"]
+
+export const campaignobjectives = ['Awareness', 'Traffic', 'Conversions']

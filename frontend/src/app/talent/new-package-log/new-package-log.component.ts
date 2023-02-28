@@ -80,7 +80,7 @@ export class NewPackageLogComponent {
         this.data = item;
         if (this.data.status === "success") {
           alertify.success("Log created successfully.")
-          this.route.navigate(['home/talent'])
+          this.route.navigate(['talent/logs'])
         }
         else {
           alertify.error("Log was not created");
@@ -118,6 +118,6 @@ export class NewPackageLogComponent {
 
 
   backButton() {
-    this.route.navigate(['home/talent'])
+    this.route.navigate(['talent/forms'])
   }
 }
