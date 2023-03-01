@@ -93,9 +93,9 @@ export class NewPackageLogComponent {
     }, 1000);
   }
 
-  updateDeliverableDropdownOptions(selectedOption : string){
+  updateDeliverableDropdownOptions(selectedOption: string) {
     if (selectedOption === 'Instagram') {
-      this.deliverables = ['Static image posts', 'Carousel posts', 'Instagram Stories','Instagram Reels', 'IGTV', 'Influencer partnerships and collaborations'];
+      this.deliverables = ['Static image posts', 'Carousel posts', 'Instagram Stories', 'Instagram Reels', 'IGTV', 'Influencer partnerships and collaborations'];
       this.form.get('Platform')!.setValue(null);
     } else if (selectedOption === 'Tiktok') {
       this.deliverables = ['Short-form video content', 'Hashtag challenges', 'Influencer partnerships and collaborations'];
@@ -110,7 +110,7 @@ export class NewPackageLogComponent {
       this.deliverables = ['Facebook posts', 'Facebook Stories', 'Live videos', 'Groups', 'Influencer partnerships and collaborations'];
       this.form.get('Platform')!.setValue(null);
     } else if (selectedOption === 'YouTube') {
-      this.deliverables = ['Video content', 'Livestreams', 'Live videos', 'Collaborations with other YouTubers or brands','Product reviews or demonstrations', 'Influencer partnerships and collaborations'];
+      this.deliverables = ['Video content', 'Livestreams', 'Live videos', 'Collaborations with other YouTubers or brands', 'Product reviews or demonstrations', 'Influencer partnerships and collaborations'];
       this.form.get('Platform')!.setValue(null);
     }
   }
