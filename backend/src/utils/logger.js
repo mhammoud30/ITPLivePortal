@@ -1,57 +1,78 @@
-const winston = require('winston');
-const fs = require('fs');
+const { createLogger, format, transports, winston } = require('winston');
+const { combine, timestamp, label, printf } = format;
 const path = require('path');
 require('dotenv/config');
 
 const levels = {
-    error: 0,
-    warn: 1,
-    info: 2,
-    http: 3,
-    debug: 4
+  error: 0,
+  warn: 1,
+  info: 2,
+  http: 3,
+  debug: 4
 };
 
-const colors = {
-    error: 'red',
-    warn: 'yellow',
-    info: 'green',
-    http: 'magenta',
-    debug: 'orange'
-};
 
-winston.addColors(colors);
 
-const transports = [
-    new winston.transports.File({
-        filename: 'logs/errors.log',
-        level: 'error',
-    }),
-    new winston.transports.File({
-        filename: 'logs/combined.log'
-    })
-];
-
-const logger = winston.createLogger({
-    level: 'info',
-    levels,
-    format: winston.format.json(),
-    transports
+const myFormat = printf(({ level, message, label, timestamp, stack }) => {
+  return `${timestamp} [${label}] ${level}: ${stack || message}`;
 });
 
-if (process.env.NODE_ENV !== 'production') {
-    logger.add(
-        new winston.transports.Console({
-            format: winston.format.combine(
-                winston.format.colorize(),
-                winston.format.simple()
-                )
-        })
-    );
-}
 
-const httpLogStream = fs.createWriteStream(path.join(__dirname, '../../', 'logs', 'http_logs.log'));
+
+const logger = createLogger({
+  level: 'info',
+  levels,
+  format: combine(
+    label({ label: 'my-app' }),
+    timestamp(),
+    myFormat
+  ),
+  transports: [
+    new transports.File({
+      filename: path.join(__dirname, 'logs', 'error-%DATE%.log'),
+      level: 'error',
+      handleExceptions: true,
+      maxsize: 5242880, // 5MB
+      maxFiles: 5,
+      tailable: true,
+      datePattern: 'YYYY-MM-DD',
+      zippedArchive: true,
+    }),
+    new transports.File({
+      filename: path.join(__dirname, 'logs', 'combined-%DATE%.log'),
+      handleExceptions: true,
+      maxsize: 5242880, // 5MB
+      maxFiles: 5,
+      tailable: true,
+      datePattern: 'YYYY-MM-DD',
+      zippedArchive: true,
+    }),
+    new transports.Console({
+      format: combine(
+        label({ label: 'my-app' }),
+        timestamp(),
+        format.colorize(),
+        myFormat
+      )
+    }),
+   /*  new transports.Syslog({
+      host: process.env.LOG_HOST,
+      port: process.env.LOG_PORT,
+      protocol: process.env.LOG_PROTOCOL,
+      app_name: 'my-app',
+      format: format.json(),
+    }) */
+  ],
+  exitOnError: false,
+});
+
+const httpLogStream = {
+  write: (message) => {
+    logger.http(message.trim());
+  }
+};
 
 module.exports = {
-    httpLogStream,
-    logger
-}
+  logger,
+  httpLogStream,
+};

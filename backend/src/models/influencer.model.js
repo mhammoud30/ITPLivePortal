@@ -1,6 +1,12 @@
 const db = require('../config/db.config');
 const { logger } = require('../utils/logger');
-const { getInfluencerNames: getInfluencerNamesQuery,createNewInfluencer: createNewInfluencerQuery, getAllInfluecers: getAllInfluencersQuery, deleteInfluencer: deleteInfluencerQuery, findInfluencerByID : findInfluencerByIDQuery, updateInfluencer: updateInfluencerQuery } = require('../database/queries');
+const {createNewInfluencerQuery,
+    getAllInfluecersQuery,
+    deleteInfluencerQuery,
+    findInfluencerByIDQuery,
+    updateInfluencerQuery,
+    getInfluencerNamesQuery,
+    getInfluencerIdsAndNamesQuery} = require('../database/influencer.queries');
 
 class Influencer {
     constructor(Name, Gender, Number, Email, MainContentLanguage, SubContentLang, MainVertical, SubVertical, Occupation, ItpRelationship, Nationality, SecondNationality, CountryLocation, CityLocation, Address, InstagramHandle, InstagramFollowers, InstagramLink, TiktokHandle, TiktokFollowers, TiktokLink, SnapchatHandle, SnapchatFollowers, SnapchatLink, TwitterHandle, TwitterFollowers, TwitterLink, FacebookHandle, FacebookFollowers, FacebookLink, YoutubeHandle, YoutubeFollowers, YoutubeLink, AudienceMalePer, AudienceFemalePer, AgeGroup1317, AgeGroup1824, AgeGroup2534, AgeGroup3544, AgeGroup4554, AgeGroup55, AudienceTopCountries1, AudienceTopCountries1Percentage, AudienceTopCountries2, AudienceTopCountries2Percentage, AudienceTopCountries3, AudienceTopCountries3Percentage, KSALicense, UAELicense, AgencyContactPerson, AgencyNumber, AgencyEmail, PreviousBrands, Bio, Notes, Status) {
@@ -133,7 +139,7 @@ class Influencer {
 
 
     static getAllInfluencers(cb) {
-        db.query(getAllInfluencersQuery, (err, res) => {
+        db.query(getAllInfluecersQuery, (err, res) => {
             if (err) {
                 logger.error(err.message);
                 cb(err, null);
@@ -245,6 +251,21 @@ class Influencer {
 
     static getInfluencerNames(cb) {
         db.query(getInfluencerNamesQuery, (err, res) => {
+            if (err) {
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }
+            if (res.length) {
+                cb(null, res);
+                return;
+            }
+            cb({ kind: 'no_results' }, null);
+        })
+    }
+
+    static getInfluencerIdsAndNames(cb) {
+        db.query(getInfluencerIdsAndNamesQuery, (err, res) => {
             if (err) {
                 logger.error(err.message);
                 cb(err, null);

@@ -1,33 +1,34 @@
 const User = require('../models/user.model');
-const { hash: hashPassword, compare: comparePassword } = require('../utils/password');
 const { generate: generateToken } = require('../utils/token');
+const crypto = require('crypto');
+const cryptojs = require('crypto-js');
+const comparePassword = require('../utils/password').compare;
 
-exports.signup = (req, res) => {
-    const { name, email, password, status, role, privilegeLevel, parentID } = req.body;
-    const hashedPassword = hashPassword(password.trim());
+exports.register = (req, res) => {
+    const { name, email, password, status, role, privilege_level, parentId } = req.body;
 
-    const user = new User(name.trim(), email.trim(), hashedPassword, status.trim(), role.trim(), privilegeLevel, parentID);
+    const hash = crypto.randomBytes(32).toString('hex');
+    const encryptedPassword = cryptojs.AES.encrypt(password, hash).toString();
+
+    const user = new User(name.trim(), email.trim(), encryptedPassword, status.trim(), role.trim(), privilege_level, parentId, hash);
   
     User.create(user, (err, data) => {
         if (err) {
             res.status(500).send({
                 status: "error",
                 message: err.message
-            });
+            }); 
         } else {
-            const token = generateToken(data.id);
+            const token = generateToken(data.id,data.name, data.role, data.privilege_level);
             res.status(201).send({
                 status: "success",
-                data: {
-                    token,
-                    data
-                }
+                data: {token}
             });
         }
     });
 };
 
-exports.signin = (req, res) => {
+exports.login = (req, res) => {
     const { email, password } = req.body;
     User.findByEmail(email.trim(), (err, data) => {
         if (err) {
@@ -45,21 +46,11 @@ exports.signin = (req, res) => {
             return;
         }
         if (data) { 
-            if (comparePassword(password.trim(), data.password)) {
-                const token = generateToken(data.id, data.privilegeLevel);
+            if (comparePassword(password.trim(), data.password, data.hash)) {
+                const token = generateToken(data.id, data.name, data.role, data.privilege_level);
                 res.status(200).send({
                     status: 'success',
-                    data: {
-                        token,
-                        id: data.id, 
-                        name: data.name,
-                        email: data.email,
-                        status: data.status,
-                        role: data.role,
-                        privilegeLevel: data.privilegeLevel,
-                        parentID: data.parentID,
-                        
-                    }
+                    data: {token, role: data.role}
                 });
                 return;
             }
@@ -97,8 +88,8 @@ exports.getUser = (req, res) => {
                         email: data.email,
                         status: data.status,
                         role: data.role,
-                        privilegeLevel: data.privilegeLevel,
-                        parentID: data.parentID,
+                        privilege_level: data.privilege_level,
+                        parentId: data.parentId,
                 });
                 return;   
         }
@@ -110,8 +101,8 @@ exports.getUser = (req, res) => {
 
 }
 
-exports.getUserIdNames = (req, res) => {
-    User.getUserIdNames((err, data) => {
+exports.getTalentUserIdNames = (req, res) => {
+    User.getTalentUserIdNames((err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({

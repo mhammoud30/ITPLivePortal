@@ -1,16 +1,21 @@
 const db = require('../config/db.config');
-const { createNewUser: createNewUserQuery, findUserByEmail: findUserByEmailQuery, findUserByID: findUserByIDQuery, getTalentUserNames: getTalentUserNames } = require('../database/queries');
+const {createNewUserQuery,
+    findUserByEmailQuery,
+    findUserByIDQuery,
+    getTalentUserNamesQuery,} = require('../database/auth.queries');
+    
 const { logger } = require('../utils/logger');
 
 class User {
-    constructor(name, email, password, role, status, privilegeLevel, parentID){
+    constructor(name, email, password, role, status, privilege_level, parentId, hash){
         this.name = name;
         this.email = email;
         this.password = password;
         this.role = role;
         this.status = status;
-        this.privilegeLevel = privilegeLevel;
-        this.parentID = parentID;
+        this.privilege_level = privilege_level;
+        this.parentId = parentId;
+        this.hash = hash;
     }
 
     static create(newUser, cb){
@@ -21,23 +26,17 @@ class User {
                 newUser.password,
                 newUser.role,
                 newUser.status,
-                newUser.privilegeLevel,
-                newUser.parentID
+                newUser.privilege_level,
+                newUser.parentId,
+                newUser.hash,
+
             ], (err, res) => {
                 if (err) {
                     logger.error(err.message);
                     cb(err, null);
                     return;
                 }
-                cb(null, {
-                    id : res.insertId,
-                    name: newUser.name,
-                    email: newUser.email,
-                    role: newUser.role,
-                    status: newUser.status,
-                    privilegeLevel: newUser.privilegeLevel,
-                    parentID: newUser.parentID
-                });
+                cb(null, {id : res.insertId, role : newUser.role, privilege_level: newUser.privilege_level});
             }
             );
     }
@@ -71,8 +70,8 @@ class User {
             cb({kind: "not_found"}, null);
         })
     }
-    static getUserIdNames(cb){
-        db.query(getTalentUserNames, (err, res) =>{
+    static getTalentUserIdNames(cb){
+        db.query(getTalentUserNamesQuery, (err, res) =>{
             if(err){
                 logger.error(err.message);
                 cb(err, null);

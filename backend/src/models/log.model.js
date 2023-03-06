@@ -5,10 +5,12 @@ const { getInfluencerLogs : getInfluencerLogsQuery , createNewLog: createNewLogQ
 const {logger} = require('../utils/logger');
 
 class Log{
-    constructor(userID, influencerID, campaign){
+    constructor(userID, influencerID,campaign, Currency, Rate){
         this.userID = userID;
         this.influencerID = influencerID;
         this.campaign = campaign;
+        this.Currency = Currency;
+        this.Rate = Rate;
     }
 
     static create(newLog, cb){
@@ -16,7 +18,9 @@ class Log{
             [
                 newLog.userID,
                 newLog.influencerID,
-                newLog.campaign
+                newLog.campaign,
+                newLog.Currency,
+                newLog.Rate
             ], (err, res) => {
                 if (err) {
                     logger.error(err.message);

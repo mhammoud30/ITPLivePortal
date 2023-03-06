@@ -1,6 +1,6 @@
 const db = require('../config/db.config');
 const { logger } = require('../utils/logger');
-const { createNewCelebrity: createnewCelebrityQuery, getAllCelebrities: getAllCelebritiesQuery, deleteCelebrity: deleteCelebrityQuery, findCelebrityByID : findCelebrityByIDQuery, updateCelebrity: updateCelebrityQuery } = require('../database/queries');
+const { createNewCelebrity: createnewCelebrityQuery, getAllCelebrities: getAllCelebritiesQuery, deleteCelebrity: deleteCelebrityQuery, findCelebrityByID : findCelebrityByIDQuery, updateCelebrity: updateCelebrityQuery } = require('../database/celebrity.queries');
 
 class Celebrity {
     constructor(Name, Gender, Number, Email, MainContentLanguage, SubContentLang, MainVertical, SubVertical, Occupation, ItpRelationship, Nationality, SecondNationality, CountryLocation, CityLocation, Address, InstagramHandle, InstagramFollowers, InstagramLink, TiktokHandle, TiktokFollowers, TiktokLink, SnapchatHandle, SnapchatFollowers, SnapchatLink, TwitterHandle, TwitterFollowers, TwitterLink, FacebookHandle, FacebookFollowers, FacebookLink, YoutubeHandle, YoutubeFollowers, YoutubeLink, AudienceMalePer, AudienceFemalePer, AgeGroup1317, AgeGroup1824, AgeGroup2534, AgeGroup3544, AgeGroup4554, AgeGroup55, AudienceTopCountries1, AudienceTopCountries1Percentage, AudienceTopCountries2, AudienceTopCountries2Percentage, AudienceTopCountries3, AudienceTopCountries3Percentage, KSALicense, UAELicense, AgencyContactPerson, AgencyNumber, AgencyEmail, PreviousBrands, Bio, Notes, Status) {

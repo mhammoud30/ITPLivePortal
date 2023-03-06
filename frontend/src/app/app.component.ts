@@ -1,21 +1,19 @@
 
 import { Component } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { UserService } from './core/Services/user.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title = 'frontend';
+  title = 'ITP Live Portal';
 
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
-    this.matIconRegistry.addSvgIcon(
-      'instagram',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('src/assets/instagram.svg')
-  );
+  constructor(private router: Router, private userService: UserService){
+    
   }
 }
 

@@ -27,12 +27,12 @@ const signup = (req, res, next) => {
             .valid('admin', 'user', 'talent', 'sales', 'superadmin', 'head of talent', 'head of sales')
             .default('user')
             .required(),
-        privilegeLevel: Joi.number()
+        privilege_level: Joi.number()
             .min(1)
             .max(10)
             .default(1)
             .required(),
-        parentID: Joi.required()
+        parentId: Joi.required()
     });
     validatorHandler(req, res, next, schema);
 };

@@ -6,19 +6,19 @@
     </button>
     <span>ITP Live Portal</span>
     <span class="spacer"></span>
-    <a mat-icon-button routerLink="influencers">
+    <a mat-icon-button *ngIf="user.role === 'talent'" routerLink="talent/influencers">
     <mat-icon class="icon">search</mat-icon>
     </a>
 
-    <div *ngIf=" user.role === 'head of talent'">
-      <a mat-icon-button  routerLink="briefsFromSales">
+    <div *ngIf=" user.role === 'talent' && user.privilege_level > 7 ">
+      <a mat-icon-button  routerLink="talent/briefsFromSales">
       <span class="icon-spacer"></span>
       <mat-icon class="icon">notifications</mat-icon>
       <span *ngIf="talentHeadNotificationCount.data.num_rows > 0 " class="notification-mark"> {{ talentHeadNotificationCount.data.num_rows }} </span>
       </a>
     </div>
-    <div *ngIf="user.role === 'talent'">
-      <a mat-icon-button  routerLink="tasksFromTalentHead">
+    <div *ngIf="user.role === 'talent' && user.privilege_level < 7 ">
+      <a mat-icon-button  routerLink="talent/tasksFromTalentHead">
       <span class="icon-spacer"></span>
       <mat-icon class="icon">notifications</mat-icon>
       <span *ngIf="talentEmployeeNotificationCount.data.num_rows > 0 " class="notification-mark"> {{ talentEmployeeNotificationCount.data.num_rows}} </span>
@@ -38,15 +38,19 @@
   <mat-sidenav mode="side" opened #sidenav="matSidenav">
     <!-- <img class="avatar mat-elevation-z8" src="../../assets/IMG_5891.jpg" /> -->
 
-    <h4>{{user.name}} {{userID}}</h4>
+    <h4>{{user.name}} {{user.id}}</h4>
     <H3 >{{user.role}} </H3>
     <p class="designation"></p>
 
 <mat-divider></mat-divider>
-    <button mat-button class="menu-button" routerLink="forms" >
+    <button *ngIf="user.role === 'talent'" mat-button class="menu-button" (click)="redirectToTalentForms()">
       <mat-icon>home</mat-icon>
       <span>Talent Forms</span>
   </button>
+  <button *ngIf="user.role === 'sales'" mat-button class="menu-button" (click)="redirectToSalesForms()">
+    <mat-icon>home</mat-icon>
+    <span>Sales Forms</span>
+</button>
   <!-- <button mat-button class="menu-button">
       <mat-icon>person</mat-icon>
       <span>Profile</span>

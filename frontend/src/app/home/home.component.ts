@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import {UserService} from '../Service/user.service';
+import {UserService} from '../core/Services/user.service';
 import { BreakpointObserver} from '@angular/cdk/layout';
 
 import { Router } from '@angular/router';
-import { SalesService } from '../Service/sales.service';
-import { TaskService } from '../Service/task.service';
+import { SalesService } from '../core/Services/sales.service';
+import { TaskService } from '../core/Services/task.service';
 
 
 @Component({
@@ -66,14 +66,15 @@ export class HomeComponent implements OnInit{
       this.talentEmployeeNotificationCount = item;
     })
 
-
-
-
   }
 
- /*  redirectToUrl() {
-    this.router.navigate(['home']);
-  } */
+  redirectToTalentForms(){
+    this.router.navigate(['home/talent/forms'])
+  }
+
+  redirectToSalesForms(){
+    this.router.navigate(['home/sales/forms'])
+  }
 }
 
 

@@ -13,6 +13,7 @@ exports.createCelebrity = (req, res) => {
 
     Celebrity.create(celebrity, (err, data) => {
                 if(err){
+                    
                     res.status(500).send({
                         status: 'error',
                         message: err.message
@@ -29,9 +30,9 @@ exports.createCelebrity = (req, res) => {
     })
 }
 exports.getCelebrities= (req, res) => {
-    const authHeader = decode(req.headers.authorization)
-    console.log(authHeader);
-    pl = authHeader.pl
+    
+    const authHeader = decode(req.headers['authorization'].split(' ')[1]);
+    pl = authHeader.privilege_level
 
     if( pl > 7){
     Celebrity.getAllCelebrities( (err, data) => {

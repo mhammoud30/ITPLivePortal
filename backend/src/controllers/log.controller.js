@@ -7,9 +7,9 @@ exports.create = (req, res) => {
     let packageID;
 
 
-    const {UserID, InfluencerID, Campaign, length, fields} = req.body
+    const {UserID, InfluencerID, Campaign, Currency, Rate, length, fields} = req.body
 
-    const log = new Log(UserID, InfluencerID, Campaign);
+    const log = new Log(UserID, InfluencerID, Campaign, Currency, Rate);
 
     Log.create(log, (err, data) =>{
         if (err) {
@@ -21,7 +21,7 @@ exports.create = (req, res) => {
             logID = data.logID ;
             
             for(let i = 0 ; i<length; i++){
-                var package = new Package(fields[i].Platform, fields[i].Deliverable, fields[i].Currency, fields[i].Rate)
+                var package = new Package(fields[i].Platform, fields[i].Deliverable)
                 Package.create(package, (err, data)=>{
                     if (err) {
                         res.status(500).send({

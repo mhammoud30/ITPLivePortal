@@ -127,3 +127,21 @@ exports.getInfluencerNames = (req, res) => {
         
     })
 }
+
+exports.getInfluencerIdsAndNames = (req, res) => {
+    Influencer.getInfluencerIdsAndNames( (err, data) => {
+        if(err){
+            res.status(500).send({
+                status: 'error',
+                message: err.message
+            });
+            return;
+        }
+        if(data){
+           
+            res.status(200).send(data);
+            return;
+        }
+        
+    })
+}
