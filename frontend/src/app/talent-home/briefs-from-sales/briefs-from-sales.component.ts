@@ -29,10 +29,11 @@ export class BriefsFromSalesComponent implements OnInit {
 
 
   backButton() {
-    this.route.navigate(['home/talent/forms'])
+    /* this.route.navigate(['home/talent/forms']) */
+    window.history.back();
   }
 
-  displayedColumns: string[] =  ['Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent',  'Action' ];
+  displayedColumns: string[] =  ['Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'ViewedByTalent', 'Action' ];
 
   getAllBriefs(){
     this.salesService.getAllBriefs().subscribe((data:any)=>{
@@ -46,11 +47,10 @@ export class BriefsFromSalesComponent implements OnInit {
   }
 
   onRowClicked(row: any) {
-    /* this.route.navigate([`talent/influencerProfile/${row.id}`]) */
+    this.viewedTask(row.id);
   }
 
   viewedTask(id: any){
-    console.log(id);
 
     this.salesService.viewedByTalent(id).subscribe((data:any)=>{
       console.log(data)

@@ -7,9 +7,9 @@ exports.create = (req, res) => {
     let packageID;
 
 
-    const {UserID, InfluencerID, Campaign, Currency, Rate, length, fields} = req.body
+    const {UserID, InfluencerID, Campaign, Currency, Rate, Notes, Time_to_reply, length, fields} = req.body
 
-    const log = new Log(UserID, InfluencerID, Campaign, Currency, Rate);
+    const log = new Log(UserID, InfluencerID, Campaign, Currency, Rate, Notes, Time_to_reply);
 
     Log.create(log, (err, data) =>{
         if (err) {

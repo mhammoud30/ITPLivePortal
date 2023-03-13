@@ -4,15 +4,16 @@ const { getMyTasks : getMyTasksQuery } = require('../database/sales.queries')
 const { logger } = require('../utils/logger');
 
 class Task{
-    constructor( assigned_by, assigned_to, brief_id, status){
+    constructor( assigned_by, assigned_to, brief_id, weight){
         this.assigned_by = assigned_by;
         this.assigned_to = assigned_to;
         this.brief_id = brief_id;
-        this.status = status;
+        this.weight = weight;
     }
 
     static create(newTask, cb){
-        db.query(assignTaskQuery, [newTask.assigned_by, newTask.assigned_to, newTask.brief_id], (err, res) => {
+
+        db.query(assignTaskQuery, [newTask.assigned_by, newTask.assigned_to, newTask.brief_id, newTask.weight], (err, res) => {
             if(err){
                 logger.error(err);
                 cb(err, null);
@@ -22,8 +23,8 @@ class Task{
         })
     }
 
-    static getUnfinishedTasks(assigned_to, cb){
-        db.query(getUnifinshedTasksQuery, [assigned_to], (err, res) => {
+    static getUnfinishedTasks(id, cb){
+        db.query(getUnifinshedTasksQuery, [id], (err, res) => {
             if(err){
                 logger.error(err);
                 cb(err, null);
@@ -33,8 +34,8 @@ class Task{
         })
     }
 
-    static getMyTasks(assigned_to, cb){
-        db.query(getMyTasksQuery, [assigned_to], (err, res) => {
+    static getMyTasks(id, cb){
+        db.query(getMyTasksQuery, [id], (err, res) => {
             if(err){
                 logger.error(err);
                 cb(err, null);
@@ -44,8 +45,8 @@ class Task{
         })
     }
 
-    static updateStatus(assigned_to, cb){
-        db.query(updateStatusQuery, [assigned_to], (err, res) => {
+    static updateStatus(assigned_to,id, cb){
+        db.query(updateStatusQuery, [assigned_to,id], (err, res) => {
             if(err){
                 logger.error(err);
                 cb(err, null);

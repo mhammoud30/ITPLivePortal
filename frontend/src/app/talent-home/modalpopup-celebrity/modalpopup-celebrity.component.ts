@@ -188,7 +188,7 @@ export class ModalpopupCelebrityComponent implements OnInit{
   }
 
   backButton() {
-    this.route.navigate(['home/talent/forms'])
+    window.history.back();
   }
 
   onSubmit() {

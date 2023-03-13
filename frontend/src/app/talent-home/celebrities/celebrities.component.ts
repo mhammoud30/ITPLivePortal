@@ -8,9 +8,10 @@ import { InfluencerModel } from 'src/app/Models/InfluencerModel';
 import { MatSort } from '@angular/material/sort';
 import * as alertify from 'alertifyjs'
 import { MatDialog } from '@angular/material/dialog';
-import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
+
 import { CelebrityService } from 'src/app/core/Services/celebrity.service';
 import { ModalpopupCelebrityComponent } from '../modalpopup-celebrity/modalpopup-celebrity.component';
+
 @Component({
   selector: 'app-celebrities',
   templateUrl: './celebrities.component.html',
@@ -31,12 +32,16 @@ export class CelebritiesComponent implements OnInit  {
 
   }
 
-  constructor(private service: CelebrityService, private route: Router, private dialog: MatDialog ) {}
+  constructor(private service: CelebrityService, private route: Router, private dialog: MatDialog, ) {}
 
   ngOnInit(): void {
     this.GetAllCelebrities();
 
+
   }
+
+
+
 
   GetAllCelebrities() {
     this.service.getCelebrities().subscribe((item) => {
@@ -44,6 +49,7 @@ export class CelebritiesComponent implements OnInit  {
       this.dataSource = new MatTableDataSource<InfluencerModel>(this.UserDetails);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
     })
   }
 
@@ -73,13 +79,12 @@ export class CelebritiesComponent implements OnInit  {
   }
 
   onRowClicked(row: any) {
-    console.log(row.ID);
-
-    this.route.navigate([`home/talent/celebrityProfile/${row.ID}`])
+    
+    this.route.navigate([`home/talent/celebrityProfile/${row.id}`])
   }
 
   backButton() {
-    this.route.navigate(['home/talent/forms'])
+    window.history.back();
   }
 
   displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'Action'];

@@ -25,6 +25,7 @@ export class ViewTaskComponent  implements OnInit{
   loadBriefData() {
     this.activatedRoute.params.subscribe( params => {
       this.id = params['id']
+
       this.salesService.getSalesBrief(this.id).subscribe((data: any) => {
         this.brief = data;
         console.log(data);
@@ -33,6 +34,10 @@ export class ViewTaskComponent  implements OnInit{
         this.date = new Intl.DateTimeFormat('en-US', this.options).format(this.originalDate); */
       });
     })
+  }
+
+  backButton(){
+    window.history.back();
   }
 
 }

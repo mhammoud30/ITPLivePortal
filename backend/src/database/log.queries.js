@@ -1,5 +1,5 @@
 const createNewLog = `
-INSERT INTO logs VALUES(null, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+INSERT INTO logs VALUES(null, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ?)
 `;
 
 const createNewPackage = `
@@ -11,7 +11,16 @@ INSERT INTO log_packages VALUES(null, ?, ?)
 `
 
 const getAllLogs =`
-SELECT  DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date, users.name AS Contact, influencer.Name AS Influencer,logs.campaign AS Campaign, package.platform AS Platform, package.deliverable AS Deliverable, logs.currency as Currency, logs.rate AS Rate 
+SELECT  DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date,
+ users.name AS Contact, 
+ influencer.Name AS Influencer,
+ logs.campaign AS Campaign, 
+ package.platform AS Platform, 
+ package.deliverable AS Deliverable, 
+ logs.currency as Currency,
+  logs.rate AS Rate, 
+  logs.notes AS Notes, 
+  logs.time_to_reply AS Time_to_reply
 FROM logs
 INNER JOIN users ON logs.userID = users.id
 INNER JOIN influencer ON logs.influencerID = influencer.ID
@@ -20,7 +29,7 @@ INNER JOIN package ON log_packages.packageID = package.id
 `
 
 const getInfluencerLogs = `
-SELECT  DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date, users.name AS Contact, influencer.Name AS Influencer,logs.campaign AS Campaign, package.platform AS Platform, package.deliverable AS Deliverable, logs.currency as Currency, logs.rate AS Rate 
+SELECT  DATE_FORMAT(DATE(logs.datecreated), '%d-%m-%Y') AS Date, users.name AS Contact, influencer.Name AS Influencer,logs.campaign AS Campaign, package.platform AS Platform, package.deliverable AS Deliverable, logs.currency as Currency, logs.rate AS Rate, logs.notes AS Notes, logs.time_to_reply AS Time_to_reply
 FROM logs
 INNER JOIN users ON logs.userID = users.id
 INNER JOIN influencer ON logs.influencerID = influencer.ID

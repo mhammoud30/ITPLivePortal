@@ -14,6 +14,9 @@ import { NewPackageLogComponent } from './new-package-log/new-package-log.compon
 import { TasksFromTalentHeadComponent } from './tasks-from-talent-head/tasks-from-talent-head.component';
 import { ViewSalesBriefComponent } from './view-sales-brief/view-sales-brief.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
+import { AuthGuard } from '../core/Guards/auth.guard';
+import { AccessDeniedComponent } from '../access-denied/access-denied.component';
+import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 
 
 const routes: Routes = [
@@ -31,9 +34,12 @@ const routes: Routes = [
   { path: 'viewSalesBrief/:id', component: ViewSalesBriefComponent},
   { path: 'tasksFromTalentHead', component: TasksFromTalentHeadComponent},
   { path: 'viewTask/:id', component: ViewTaskComponent},
+  { path: 'influencer-rating/:id', component: InfluencerRatingComponent},
+
+  { path: 'access-denied', component: AccessDeniedComponent, canActivate: [AuthGuard] }
 
 ]
- 
+
 @NgModule({
   declarations: [],
   imports: [

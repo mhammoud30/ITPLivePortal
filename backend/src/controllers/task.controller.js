@@ -2,8 +2,9 @@ const { Logform } = require('winston');
 const Task = require('../models/task.model');
 
 exports.create = (req, res) => {
-    const { assigned_by, assigned_to, brief_id } = req.body;
-    const task = new Task(assigned_by, assigned_to, brief_id);
+    const { assigned_by, assigned_to, brief_id, weight } = req.body;
+    
+    const task = new Task(assigned_by, assigned_to, brief_id, weight);
 
     Task.create(task, (err, data) => {
         if (err) {
@@ -20,9 +21,9 @@ exports.create = (req, res) => {
 }
 
 exports.getUnfinishedTasks = (req, res) => { 
-    const { assigned_to } = req.body;
+    const id = Number(req.params.id);
 
-    Task.getUnfinishedTasks(assigned_to, (err, data) => {
+    Task.getUnfinishedTasks(id, (err, data) => {
         if (err) {
             res.status(500).send({
                 status: "error",
@@ -37,12 +38,11 @@ exports.getUnfinishedTasks = (req, res) => {
         }
     })
 }
-
+ 
 exports.getMyTasks = (req, res) => {
     
-    const { assigned_to } = req.body;
-
-    Task.getMyTasks(assigned_to, (err, data) => {
+    const id = Number(req.params.id);
+    Task.getMyTasks(id, (err, data) => {
         if (err) {
             res.status(500).send({
                 status: "error",
@@ -59,9 +59,8 @@ exports.getMyTasks = (req, res) => {
 }
 
 exports.updateStatus = (req, res) => {
-    console.log(req.body);
-    const { assigned_to } = req.body;
-    Task.updateStatus(assigned_to, (err, data) => {
+    const { assigned_to , id} = req.body;
+    Task.updateStatus(assigned_to,id, (err, data) => {
         if (err) {
             res.status(500).send({
                 status: "error",

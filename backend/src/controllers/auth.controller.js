@@ -122,7 +122,7 @@ exports.getTalentUserIdNames = (req, res) => {
                         data
                 });
                 return;   
-        }
+        } 
         res.status(401).send({
             status: 'error',
             message: 'not found'

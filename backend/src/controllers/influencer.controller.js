@@ -40,7 +40,7 @@ exports.getInfluencers = (req, res) => {
         }
         
     })
-}
+} 
 
 exports.deleteInfluencer = (req, res) => {
     Influencer.deleteInfluencer(req.params.id, (err, data) => {

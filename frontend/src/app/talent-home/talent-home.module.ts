@@ -18,6 +18,7 @@ import { ViewTaskComponent } from './view-task/view-task.component';
 import { TalentHomeRoutingModule } from './talent-home-routing.module';
 import { MaterialModule } from 'src/assets/material-module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { InfluencerRatingComponent } from './influencer-rating/influencer-rating.component';
 
 
 
@@ -37,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NewPackageLogComponent,
     TasksFromTalentHeadComponent,
     ViewSalesBriefComponent,
-    ViewTaskComponent, 
+    ViewTaskComponent,
+    InfluencerRatingComponent, 
 
   ],
   imports: [

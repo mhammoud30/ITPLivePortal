@@ -34,9 +34,9 @@ export class LoginPageComponent implements OnInit{
       this.data = res;
       if(this.data!=null){
         localStorage.setItem('token',this.data.data.token)
-        if(this.data.data.role === 'superadmin' || this.data.data.role === 'head of talent') {
+        if(this.data.data.role === 'superadmin' /* || this.data.data.role === 'head of talent' */) {
           /* change route later to home page with all sections available */
-          this.route.navigate(['home/talent/forms'])
+          this.route.navigate(['home/admin/forms'])
           }else {
             this.route.navigate([`home/${this.data.data.role}/forms`])
           }

@@ -42,7 +42,7 @@ app.use(limiter);
 
 
 
- app.use('/api/v2/auth', authRoutes);
+app.use('/api/v2/auth', authRoutes);
 app.use('/api/v2/influencers', influencerRoutes);
 app.use('/api/celebrities', celebrityRoute);
 app.use('/api/logs', logRoute);

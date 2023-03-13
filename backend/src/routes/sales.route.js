@@ -17,6 +17,6 @@ router.route('/viewedByTalent/:id')
 router.route('/getSalesBrief/:id')
     .get(asyncHandler(salesController.getSalesBrief))
 
-
-
+router.route('/getSalesBriefIdbyTaskId/:id')
+    .get(asyncHandler(salesController.getSalesBriefIdByTaskId))
 module.exports = router;

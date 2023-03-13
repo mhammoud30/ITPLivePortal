@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { genders, languages, verticals, countries, nationalities } from 'src/assets/influencer-form-arrays';
 import * as alertify from 'alertifyjs';
 import { CelebrityService } from 'src/app/core/Services/celebrity.service';
+import { UserService } from 'src/app/core/Services/user.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class NewCelebrityComponent {
   countries = countries;
   nationalities = nationalities;
 
-  constructor(private formBuilder: FormBuilder, private service: CelebrityService, private route: Router){
+  constructor(private formBuilder: FormBuilder, private service: CelebrityService, private route: Router, private userService: UserService){
     this.newCelebrityForm = this.formBuilder.group({
       Name: ['', [Validators.required]],
       Gender: ['', [Validators.required]],
@@ -98,7 +99,7 @@ export class NewCelebrityComponent {
   }
 
   onSubmit(){
-    this.service.addCelebrity(this.newCelebrityForm.value).subscribe( (res)=> {
+    this.service.addCelebrity({...this.newCelebrityForm.value, updatedBy : this.userService.getID()}).subscribe( (res)=> {
       this.data = res;
       if(this.data.status === "success"){
         alertify.success("Celebrity added successfully.")
@@ -113,7 +114,7 @@ export class NewCelebrityComponent {
 
 
   backButton(){
-    this.route.navigate(['home/talent/forms'])
+    window.history.back();
   }
 
 }

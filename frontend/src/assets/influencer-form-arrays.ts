@@ -454,3 +454,13 @@ export const platforms = ['Instagram', 'Tiktok', 'Snapchat', 'Twitter', 'Faceboo
 export const clientIndustries = ["Beauty", "Lifestyle", "Sports", "Food", "Gaming", "Business", "Travel", "Comedy", "Celebrities", "Health", "Nutrition", "Bodybuilding", "Humanitarian", "Automotives", "Tech", "Furniture", "Shopping", "NGO"]
 
 export const campaignobjectives = ['Awareness', 'Traffic', 'Conversions']
+
+
+export const deliverables ={
+  Instagram : ['Static image posts', 'Carousel posts', 'Instagram Stories', 'Instagram Reels', 'IGTV', 'Influencer partnerships and collaborations'],
+  Tiktok: ['Tiktok videos', 'Tiktok Reels', 'Tiktok challenges', 'Tiktok partnerships and collaborations'],
+  Snapchat: ['Snapchat stories', 'Snapchat videos', 'Snapchat partnerships and collaborations'],
+  Twitter: ['Twitter posts', 'Twitter videos', 'Twitter partnerships and collaborations'],
+  Facebook: ['Facebook posts', 'Facebook videos', 'Facebook partnerships and collaborations'],
+  Youtube: ['Youtube videos', 'Youtube partnerships and collaborations']
+}

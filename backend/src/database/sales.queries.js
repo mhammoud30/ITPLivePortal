@@ -37,7 +37,11 @@ INNER JOIN task
 ON salesbrief.id = task.brief_id
 WHERE task.assigned_to = ?;
 `
-
+const getSalesBriefIdbyTaskId = `
+SELECT brief_id
+FROM task
+WHERE id = ?
+`
 
 module.exports = {
     createNewSalesBrief,
@@ -46,6 +50,7 @@ module.exports = {
     viewedByTalent,
     getBrief,
     assignTask,
-    getMyTasks
+    getMyTasks,
+    getSalesBriefIdbyTaskId
     
 }

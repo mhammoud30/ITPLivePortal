@@ -187,7 +187,7 @@ export class ModalpopupComponent implements OnInit {
   }
 
   backButton() {
-    this.route.navigate(['talent/forms'])
+    window.history.back();
   }
 
   onSubmit() {

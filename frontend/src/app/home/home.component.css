@@ -126,3 +126,21 @@ mat-divider {
   background-color: red;
   color: white;
 }
+
+
+
+.NotificationPopoverstyle{
+  width: auto;
+  height: 38px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+  background-color: #002b5c;
+  border: 1px solid #002b5c;
+  padding: 0px 10px;
+  border-radius: 6px;
+  outline: 0px;
+  cursor: pointer;
+  color: #fff;
+}

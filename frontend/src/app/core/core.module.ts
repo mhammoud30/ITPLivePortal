@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxHttpRequestModule } from 'ngx-http-request-cache';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgxHttpRequestModule.forRoot(),
   ]
 })
 export class CoreModule { }

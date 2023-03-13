@@ -41,6 +41,14 @@
       <td mat-cell *matCellDef="let element"> {{element.NumberofRecommendations}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="Assigned_to">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Assigned</th>
+      <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.assigned_to > 0"> Yes </span>
+          <span *ngIf="element.assigned_to === null"> No </span>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="ViewedByTalent">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Viewed </th>
       <td mat-cell *matCellDef="let element">

@@ -14,15 +14,13 @@ import { TokenInterceptorService } from './core/Interceptors/token-interceptor.s
 
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
-
-
-
-
+import { NgxHttpRequestModule } from 'ngx-http-request-cache';
 
 
 import { CoreModule } from './core/core.module';
 import { LoginModule } from './login/login.module';
 import { TalentHomeModule } from './talent-home/talent-home.module';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
 
@@ -33,6 +31,7 @@ import { TalentHomeModule } from './talent-home/talent-home.module';
     AppComponent,
     HomeComponent,
     StatusComponent,
+    AccessDeniedComponent,
 
 
   ],
@@ -47,6 +46,7 @@ import { TalentHomeModule } from './talent-home/talent-home.module';
     CoreModule,
     LoginModule,
     TalentHomeModule,
+    NgxHttpRequestModule.forRoot(),
 
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass:TokenInterceptorService,multi:true},UserService],

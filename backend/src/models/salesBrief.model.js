@@ -1,5 +1,5 @@
 const db = require('../config/db.config');
-const {getBrief: getBriefQuery, createNewSalesBrief : createNewSalesBriefQuery, briefsNotViewedByTalent: briefsNotViewedByTalentQuery, getAllBriefs: getAllBriefsQuery, viewedByTalent: viewedByTalentQuery} = require('../database/sales.queries')
+const {getSalesBriefIdbyTaskId: getSalesBriefIdbyTaskIdQuery,getBrief: getBriefQuery, createNewSalesBrief : createNewSalesBriefQuery, briefsNotViewedByTalent: briefsNotViewedByTalentQuery, getAllBriefs: getAllBriefsQuery, viewedByTalent: viewedByTalentQuery} = require('../database/sales.queries')
 
 const { logger } = require('../utils/logger');
 
@@ -79,6 +79,16 @@ class SalesBrief {
 
     static getBrief(id, cb){
         db.query(getBriefQuery, id, (err, res) => {
+            if (err) {
+                logger.error(err.message);
+                cb(err, null);
+                return;
+            }cb(null, res[0]);
+        })
+    }
+
+    static getSalesBriefIdbyTaskId(id, cb){
+        db.query(getSalesBriefIdbyTaskIdQuery, id, (err, res) => {
             if (err) {
                 logger.error(err.message);
                 cb(err, null);

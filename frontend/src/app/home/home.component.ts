@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import {UserService} from '../core/Services/user.service';
-import { BreakpointObserver} from '@angular/cdk/layout';
+
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 import { Router } from '@angular/router';
 import { SalesService } from '../core/Services/sales.service';
 import { TaskService } from '../core/Services/task.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -13,21 +14,24 @@ import { TaskService } from '../core/Services/task.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
   parts: any;
   payload: any;
-  userID : any;
-  token:any;
-  user: any;
+  userID: any;
+  userName: any;
+  userRole: any;
+  userPrivilege_level: any;
+  token: any;
 
-  menu:any;
+  menu: any;
+
   talentHeadNotificationCount: any;
   talentEmployeeNotificationCount: any;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, private service: UserService, private router: Router, private salesService : SalesService, private taskService : TaskService) {}
+  constructor(private observer: BreakpointObserver, private router: Router, private salesService: SalesService, private taskService: TaskService, private location: Location) { }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -47,33 +51,46 @@ export class HomeComponent implements OnInit{
     this.parts = this.token.split('.');
     this.payload = JSON.parse(atob(this.parts[1]));
     this.userID = parseInt(this.payload.id);
-    const load = {'assigned_to': this.userID}
+    this.userName = this.payload.name;
+    this.userRole = this.payload.role;
+    this.userPrivilege_level = this.payload.privilege_level;
 
+    const load =  this.userID
 
-    this.service.getUserByID(this.userID).subscribe( item => {
-      this.user = item;
+    if (this.userRole == 'talent') {
+      if (this.userPrivilege_level > 7) {
+        this.salesService.getSalesBriefsNotViewedByTalent().subscribe(item => {
+          this.talentHeadNotificationCount = item;
+        })
+      }
+      else {
+        this.taskService.getUnfinishedTasks(load).subscribe(item => {
+          console.log(item);
 
-    })
+          this.talentEmployeeNotificationCount = item;
+        })
+      }
+    }
 
-    this.salesService.getSalesBriefsNotViewedByTalent().subscribe( item => {
-      this.talentHeadNotificationCount = item;
-    })
-
-
-     this.taskService.getUnfinishedTasks(load ).subscribe( item => {
-      console.log(item);
-
-      this.talentEmployeeNotificationCount = item;
-    })
-
+    this.refresh();
   }
 
-  redirectToTalentForms(){
+  redirectToTalentForms() {
     this.router.navigate(['home/talent/forms'])
   }
 
-  redirectToSalesForms(){
+  redirectToSalesForms() {
     this.router.navigate(['home/sales/forms'])
+  }
+
+  refresh(): void {
+    const refreshFlag = localStorage.getItem('refreshed');
+
+      if (!refreshFlag) {
+      localStorage.setItem('refreshed', 'true');
+      this.location.go(this.location.path());
+      window.location.reload();
+    }
   }
 }
 

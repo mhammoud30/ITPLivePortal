@@ -27,11 +27,11 @@ export class TasksFromTalentHeadComponent {
   ngOnInit(): void {
     this.userID = this.userService.getID();
 
-    this.getMyTasks({assigned_to :this.userID })
+    this.getMyTasks(this.userID)
   }
 
   backButton() {
-    this.route.navigate(['home/talent/forms'])
+    window.history.back();
   }
 
   displayedColumns: string[] =  ['Agency', 'Client','ClientIndustry', 'CampaignObjective', 'NumberofRecommendations', 'status', 'Action' ];
@@ -48,15 +48,20 @@ export class TasksFromTalentHeadComponent {
   }
 
   onRowClicked(row: any) {
-    /* this.route.navigate([`talent/influencerProfile/${row.id}`]) */
+    this.viewedTask(row.id)
   }
 
   viewedTask(id:any){
 
-
-    this.taskService.updateStatus({ assigned_to : this.userID}).subscribe((data:any)=>{
-      console.log(data)
+    if(this.briefDetails.data.status === 'Not Started'){
+    this.taskService.updateStatus({ assigned_to : this.userID, id: id}).subscribe((data:any)=>{
     })
-    this.route.navigate([`talent/viewTask/${id}`]);
+  }
+
+    /* we need to get the brief_id from task. task id is in the function  */
+    this.salesService.getSalesBriefIdbyTaskId(id).subscribe((data:any)=>{
+      this.route.navigate([`home/talent/viewSalesBrief/${data.data.brief_id}`]);
+    })
+    /* this.route.navigate([`home/talent/viewTask/${id}`]); */
   }
 }

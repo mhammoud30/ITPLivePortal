@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SalesService } from 'src/app/core/Services/sales.service';
 import { TaskService } from 'src/app/core/Services/task.service';
@@ -19,11 +19,14 @@ export class ViewSalesBriefComponent implements OnInit{
   originalDate: any
   talentEmployees: any;
   user_id = this.userService.getID();
+  role = this.userService.getRole();
+  privilege_level = this.userService.getPrivilegeLevel();
   assignForm : FormGroup;
 
   constructor(private salesService: SalesService, private activatedRoute:  ActivatedRoute, private formBuilder: FormBuilder, private userService: UserService, private taskService: TaskService) {
-    this.assignForm = new FormGroup({
-      Employee: new FormControl('')
+    this.assignForm = this.formBuilder.group({
+      Employee: ['', Validators.required],
+      Weight: ['', Validators.required, Validators.min(1), Validators.max(10)],
     });
   }
 
@@ -51,17 +54,20 @@ export class ViewSalesBriefComponent implements OnInit{
     this.userService.getTalentUserIdNames().subscribe((data: any) => {
 
       this.talentEmployees = data.data;
+      console.log(data.data);
     });
   }
 
   assign(){
+    console.log({assigned_by: this.userService.getID() , assigned_to : this.assignForm.value.Employee, brief_id : this.brief.data.id, weight: this.assignForm.value.Weight});
 
-    console.log({assigned_by: this.user_id , assigned_to : this.assignForm.value.Employee, brief_id : this.brief.data.id});
-
-
-    this.taskService.createTask({assigned_by: this.userService.getID() , assigned_to : this.assignForm.value.Employee, brief_id : this.brief.data.id}).subscribe((data: any) => {
+    this.taskService.createTask({assigned_by: this.userService.getID() , assigned_to : this.assignForm.value.Employee, brief_id : this.brief.data.id, weight: this.assignForm.value.Weight}).subscribe((data: any) => {
         alertify.success('Task Assigned');
     });
+  }
+
+  backButton(){
+    window.history.back();
   }
 
 

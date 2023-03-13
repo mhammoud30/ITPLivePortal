@@ -10,6 +10,8 @@ import * as alertify from 'alertifyjs'
 import { MatDialog } from '@angular/material/dialog';
 import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 
+
+
 @Component({
   selector: 'app-influencers',
   templateUrl: './influencers.component.html',
@@ -18,6 +20,8 @@ import { ModalpopupComponent } from '../modalpopup/modalpopup.component';
 export class InfluencersComponent implements OnInit {
   dataSource: any;
   UserDetails: any;
+
+
 
 
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -32,7 +36,7 @@ export class InfluencersComponent implements OnInit {
 
 
 
-  constructor(private service: InfluencerService, private route: Router, private dialog: MatDialog ) {}
+  constructor(private service: InfluencerService, private route: Router, private dialog: MatDialog) {}
 
 
   ngOnInit(): void {
@@ -78,12 +82,14 @@ export class InfluencersComponent implements OnInit {
   }
 
   onRowClicked(row: any) {
-    this.route.navigate([`home/talent/influencerProfile/${row.ID}`])
+    this.route.navigate([`home/talent/influencerProfile/${row.id}`])
   }
 
   backButton() {
-    this.route.navigate(['home/talent/forms'])
+    window.history.back();
   }
+
+
 
   displayedColumns: string[] = ['ID', 'Name', 'Gender', 'InstagramHandle', 'InstagramFollowers', 'CountryLocation', 'MainVertical', 'Action'];
 }

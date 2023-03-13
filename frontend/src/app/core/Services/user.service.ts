@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import  { HttpClient} from '@angular/common/http'
+import  { HttpClient, HttpHeaders} from '@angular/common/http'
 import { UserModel } from '../../Models/UserModel';
 import { Observable } from 'rxjs';
 import { environment} from '../../../environments/environment.development';
@@ -10,9 +10,10 @@ import { environment} from '../../../environments/environment.development';
 })
 export class UserService {
 
+
   constructor(private http: HttpClient){ }
 
-  authApiURL = environment.apiUrl + '/v2/auth'
+  authApiURL = environment.apiUrl + '/v1/users'
 
 
   logIn(inputdata:any){
@@ -35,9 +36,7 @@ export class UserService {
     return this.http.get<UserModel>(`${this.authApiURL}/getUser/${inputdata}`)
   }
 
-  getPrivelegeLevel(){
 
-  }
 
   getID(){
     const token = this.getToken();
@@ -49,6 +48,22 @@ export class UserService {
 
   getTalentUserIdNames(){
     return this.http.get(`${this.authApiURL}/getTalentUserIdNames`)
+  }
+
+  getRole(){
+    const token = this.getToken();
+    const parts = token!.split('.');
+    const payload = JSON.parse(atob(parts[1]));
+    const userRole = payload.role;
+    return userRole;
+  }
+
+  getPrivilegeLevel(){
+    const token = this.getToken();
+    const parts = token!.split('.');
+    const payload = JSON.parse(atob(parts[1]));
+    const userPrivilege_level = payload.privilege_level;
+    return userPrivilege_level;
   }
 
 

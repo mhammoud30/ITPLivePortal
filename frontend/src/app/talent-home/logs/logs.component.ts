@@ -49,6 +49,7 @@ export class LogsComponent implements OnInit {
 
   GetAllLogs() {
     this.service.getAllLogs().subscribe((item) => {
+      console.log(item);
       this.UserDetails = item;
       this.dataSource = new MatTableDataSource<LogModel>(this.UserDetails);
       this.dataSource.paginator = this.paginator;
@@ -58,6 +59,8 @@ export class LogsComponent implements OnInit {
 
   GetInfluencerNames() {
     this.influencerService.getInfluencerNames().subscribe((item) => {
+
+
       this.influencers = item;
     })
   }
@@ -91,7 +94,7 @@ export class LogsComponent implements OnInit {
 
 
   backButton() {
-    this.route.navigate(['home/talent/forms'])
+    window.history.back();
   }
 
   displayedColumns: string[] = ['Influencer', 'Campaign', 'Platform', 'Deliverable', 'Currency', 'Rate', 'Contact', 'Date'];
